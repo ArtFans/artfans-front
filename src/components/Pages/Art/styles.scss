@@ -2,6 +2,7 @@
 
 .art-page {
   display: flex;
+  width: 100%;
 
   @media screen and #{$media-xs} {
     flex-direction: column;
@@ -12,6 +13,7 @@
     flex-direction: column;
     max-width: 40%;
     width: 100%;
+    border-right: $border-light-gray;
 
     @media screen and #{$media-xs} {
       max-width: 100%;
@@ -60,7 +62,6 @@
   &__other-nfts {
     height: 100%;
     padding-top: $gutter-lg;
-    border-right: $border-light-gray;
 
     @media screen and #{$media-xs} {
       display: none;
@@ -70,7 +71,6 @@
       height: auto;
       display: none;
       padding-bottom: $gutter-md;
-      border-right: 0;
 
       @media screen and #{$media-xs} {
         display: block;

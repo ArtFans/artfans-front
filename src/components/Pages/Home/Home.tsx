@@ -23,7 +23,7 @@ export const Home = () => {
   }, []);
 
   return !arts.length ? <Loader /> : (
-    <Container className="container__home">
+    <Container className="home-page">
       <ArtInfiniteScroll items={arts} loadMore={fetchArts}>
         <Grid>
           {arts.map((item: any) => (

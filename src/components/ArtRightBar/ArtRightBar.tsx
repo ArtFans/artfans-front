@@ -12,8 +12,6 @@ import './styles.scss';
 export const ArtRightBar = () => {
   const { user: { friends } } = useContext<any>(UserContext);
 
-  if (!friends.length) return null;
-
   return (
     <div className="right-bar">
       <div className="right-bar__section">

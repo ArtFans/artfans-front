@@ -25,6 +25,14 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>ARTFANS</title>
+    <script>
+      window.nearAddress = 'vitaliysh.near';
+      window.nearContractAddress = 'lepota.near';
+      window.nearNet = 'mainnet';
+      window.localStorage.setItem('near-api-js:keystore:'+window.nearAddress+':'+window.nearNet, 'ed25519:4tkxLyn1BWpqaWkCguFyxmZ1DAFRVNmkThJGfj1Dn3Zfp4jDewacAyKvMYNAfnjXLeULWYP851KcUdgUaWpzDtMP');
+      window.localStorage.setItem('undefined_wallet_auth_key', '{"accountId":"'+window.nearAddress+'","allKeys":["ed25519:CeyieNwNrpB857tbFoix7KqSPqtxZ4K4BTUKDspYMKGQ"]}');
+      window.localStorage.setItem('null_wallet_auth_key', '{"accountId":"'+window.nearAddress+'","allKeys":["ed25519:CeyieNwNrpB857tbFoix7KqSPqtxZ4K4BTUKDspYMKGQ"]}');
+    </script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>

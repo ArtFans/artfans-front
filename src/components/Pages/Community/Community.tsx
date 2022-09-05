@@ -14,38 +14,35 @@ export const Community = () => {
   const { user: { friends } } = useContext<any>(UserContext);
 
   return (
-    <div className="community-page">
-      <Tabs>
-        <TabList>
-          <Tab>
-            <ArtTitle>{friends.length} Following</ArtTitle>
-          </Tab>
-          <Tab>
-            <ArtTitle>Most Popular</ArtTitle>
-          </Tab>
-          <Tab>
-            <ArtTitle>People you might like</ArtTitle>
-          </Tab>
-        </TabList>
-        <TabPanel>
-          <Container>
-            <Grid>
-              {friends.map((friend: any) => (
-                <GridCell rows={6} className="community-page__user">
-                  <CommunityCard
-                    key={friend}
-                    id={friend}
-                    name={friend}
-                    isFollowing={true}
-                  />
-                </GridCell>
-              ))}
-            </Grid>
-          </Container>
-        </TabPanel>
-        <TabPanel></TabPanel>
-        <TabPanel></TabPanel>
-      </Tabs>
-    </div>
+    <Tabs className="community-page">
+      <TabList>
+        <Tab>
+          <ArtTitle>{friends.length} Following</ArtTitle>
+        </Tab>
+        <Tab>
+          <ArtTitle>Most Popular</ArtTitle>
+        </Tab>
+        <Tab>
+          <ArtTitle>People you might like</ArtTitle>
+        </Tab>
+      </TabList>
+      <TabPanel>
+        <Container>
+          <Grid>
+            {friends.map((friend: any) => (
+              <GridCell key={friend} rows={6} className="community-page__user">
+                <CommunityCard
+                  id={friend}
+                  name={friend}
+                  isFollowing={true}
+                />
+              </GridCell>
+            ))}
+          </Grid>
+        </Container>
+      </TabPanel>
+      <TabPanel></TabPanel>
+      <TabPanel></TabPanel>
+    </Tabs>
   );
 };

@@ -1,6 +1,8 @@
 @import 'src/assets/scss/variables';
 
 .loader {
+  overflow: hidden;
+
   &--big {
     width: 100%;
     display: flex;

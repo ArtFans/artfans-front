@@ -7,7 +7,6 @@ import React, {
 } from 'react';
 import cx from 'classnames';
 
-import ApiService from 'src/services/ApiService';
 import NearService from 'src/services/NearService';
 
 import ArtButton from 'src/components/ArtButton';
@@ -26,7 +25,6 @@ import { UserContext } from 'src/providers/UserProvider';
 export const ProfileThey = ({ id }: any) => {
   const [isPageLoading, setPageLoading] = useState(true);
   const [isFriendAdding, setFriendAdding] = useState(false);
-  const [arts, setArts] = useState([]);
   const [profile, setProfile] = useState<any>({});
 
   const { addFriend, user: { friends } } = useContext<any>(UserContext);
@@ -34,15 +32,6 @@ export const ProfileThey = ({ id }: any) => {
   const isFriend = useMemo(() => (
     friends.some((item: any) => item === id)
   ), [id, friends]);
-
-  const fetchArts = useCallback(async () => {
-    const result = await ApiService.getFriendsArts({
-      friends: [id],
-      skip: arts.length
-    });
-
-    setArts(result);
-  }, [id, arts]);
 
   const fetchUser = useCallback(async () => {
     try {
@@ -67,7 +56,7 @@ export const ProfileThey = ({ id }: any) => {
     } finally {
       setPageLoading(false);
     }
-  }, [id, fetchArts]);
+  }, [id]);
 
   const onFollow = useCallback(async () => {
     setFriendAdding(true);
@@ -88,7 +77,6 @@ export const ProfileThey = ({ id }: any) => {
 
   useEffect(() => {
     fetchUser();
-    fetchArts();
   }, []);
 
   const followBtn = cx(
@@ -134,7 +122,7 @@ export const ProfileThey = ({ id }: any) => {
           />
           <ProfileStats />
         </Container>
-        <ProfileTabs arts={arts} />
+        <ProfileTabs id={id} />
       </div>
     </div>
   );
