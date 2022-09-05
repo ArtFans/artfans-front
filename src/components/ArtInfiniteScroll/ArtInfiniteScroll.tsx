@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
 import Loader from '../Loader';
@@ -9,14 +9,19 @@ export const ArtInfiniteScroll = (
   {
     items = [],
     loadMore,
-    children
+    children,
+    limit = 15
   }: any
 ) => {
+  const hasMore = useMemo(
+    () => (items.length / limit) % 1 === 0, [items.length, limit]
+  );
+
   return (
     <InfiniteScroll
       dataLength={items.length}
       next={loadMore}
-      hasMore={true}
+      hasMore={hasMore}
       loader={<Loader />}
       scrollThreshold={1}
       className="art-infinite-scroll"

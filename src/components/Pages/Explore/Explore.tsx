@@ -21,7 +21,7 @@ export const Explore = () => {
     const arts = await ApiService.getFriendsArts({
       friends,
       skip: friendsArts.length
-    }) || [];
+    });
 
     setFriendsArts((state: any) => [...state, ...arts]);
   }, [friends, friendsArts]);

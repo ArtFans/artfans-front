@@ -96,7 +96,7 @@ class ApiService {
         data: { friends, skip, limit }
       });
 
-      return result.data;
+      return result.data || [];
     } catch (error) {
       console.log(error);
     }

@@ -31,7 +31,7 @@ export const Comments = ({ artId }: any) => {
       onSend();
     }
   }, [onSend]);
-console.log(comments);
+
   return (
     <div className="comments">
       <div className="comments__header">
