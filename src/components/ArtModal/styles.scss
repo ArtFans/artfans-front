@@ -1,0 +1,34 @@
+@import 'src/assets/scss/variables';
+
+.art-modal {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 20;
+  left: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__close {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    right: $gutter-md;
+    top: $gutter-sm;
+  }
+
+  &__body {
+    max-width: 90%;
+    max-height: 90%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+
+    & > * {
+      object-fit: contain;
+    }
+  }
+}

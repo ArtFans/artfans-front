@@ -1,0 +1,63 @@
+@use './fonts';
+@import './variables';
+@import './tabs';
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body, html {
+  height: 100%;
+  max-height: 100%;
+}
+
+body {
+  width: 100%;
+  overflow-x: hidden;
+  background: $color-mid-gray;
+  font: {
+    family: Montserrat, sans-serif;
+    size: $font-size-md;
+    weight: $font-weight-sm;
+  };
+}
+
+textarea, input {
+  border: 0;
+  outline: none;
+  background: none;
+  font-family: Montserrat, sans-serif;
+
+  &::placeholder {
+    color: $color-sami-gray;
+  }
+}
+
+a {
+  text-decoration: none;
+}
+
+i {
+  display: inline-block;
+}
+
+button {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+div {
+  box-sizing: border-box;
+}
+
+img, video {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+#root {
+  height: inherit;
+}

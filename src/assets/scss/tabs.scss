@@ -1,0 +1,39 @@
+@import 'react-tabs/style/react-tabs.scss';
+
+.react-tabs {
+  width: 100%;
+
+  &__tab-list {
+    border-bottom: 1px solid $color-light-gray !important;
+    margin-bottom: 0;
+    padding: 0 $gutter-md;
+  }
+
+  &__tab {
+    border: 0;
+    margin-right: $gutter-lg;
+    padding: $gutter-md 0;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  &__tab--selected {
+    background: none;
+    color: $color-sami-black;
+    border-bottom: 3px solid $color-sami-black;
+
+    & > div {
+      color: $color-sami-black;
+    }
+
+    &::after {
+      display: none;
+    }
+  }
+
+  &__tab-panel {
+    padding-top: $gutter-md;
+  }
+}

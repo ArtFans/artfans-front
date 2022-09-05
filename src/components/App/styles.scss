@@ -1,0 +1,10 @@
+@import 'src/assets/scss/variables';
+
+.content {
+  display: flex;
+  padding-left: $leftbar-width;
+
+  @media screen and #{$media-sm} {
+    min-height: calc(100vh - #{$header-height});
+  }
+}

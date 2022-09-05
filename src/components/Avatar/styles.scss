@@ -1,0 +1,102 @@
+@import 'src/assets/scss/variables';
+
+.avatar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__user {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: $font-weight-xl;
+    text-transform: uppercase;
+    background: $color-sami-black;
+    color: $color-white;
+    position: relative;
+    overflow: hidden;
+    user-select: none;
+
+    &--sm {
+      width: 30px;
+      height: 30px;
+      font-size: $font-size-sm;
+    }
+
+    &--md {
+      width: 40px;
+      height: 40px;
+    }
+
+    &--lg {
+      width: 50px;
+      height: 50px;
+      font-size: $font-size-lg;
+    }
+
+    &--xl {
+      width: 60px;
+      height: 60px;
+      font-size: $font-size-xl;
+    }
+
+    &--xxl {
+      width: 80px;
+      height: 80px;
+      font-size: $font-size-xl;
+    }
+  }
+
+  &--sm {
+    width: 30px;
+
+    .avatar__username {
+      max-width: 30px;
+    }
+  }
+
+  &--md {
+    width: 40px;
+
+    .avatar__username {
+      max-width: 40px;
+    }
+  }
+
+  &--lg {
+    width: 50px;
+
+    .avatar__username {
+      max-width: 50px;
+    }
+  }
+
+  &--xl {
+    width: 60px;
+
+    .avatar__username {
+      max-width: 60px;
+    }
+  }
+
+  &--xxl {
+    width: 80px;
+
+    .avatar__username {
+      max-width: 80px;
+    }
+  }
+
+  &__img {
+    position: absolute;
+  }
+
+  &__username {
+    color: $color-sami-black;
+    font-size: $font-size-xs;
+    margin-top: $gutter-xxs;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+}

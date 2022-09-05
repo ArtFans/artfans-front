@@ -1,0 +1,9 @@
+@import 'src/assets/scss/variables';
+
+.container__home {
+  padding-top: $gutter-md;
+
+  @media screen and #{$media-xxs} {
+    padding-top: $gutter-sm;
+  }
+}

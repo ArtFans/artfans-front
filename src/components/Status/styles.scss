@@ -1,0 +1,26 @@
+@import 'src/assets/scss/variables';
+
+.status {
+  &__online {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: $color-green;
+    display: inline-block;
+  }
+
+  &__tagline {
+    font-size: $font-size-xs;
+    font-weight: $font-weight-md;
+    color: $color-gray;
+    margin-left: $gutter-xxxs;
+  }
+
+  &__last-seen {
+    color: $color-gray;
+    font: {
+      size: $font-size-xs;
+      weight: $font-weight-md;
+    }
+  }
+}

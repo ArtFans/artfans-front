@@ -1,0 +1,45 @@
+@import 'src/assets/scss/variables';
+
+.icon {
+  font-style: normal;
+
+  &--sm {
+    width: $icon-size-sm;
+    height: $icon-size-sm;
+  }
+
+  &--md {
+    width: $icon-size-md;
+    height: $icon-size-md;
+  }
+
+  &--round {
+    background: $color-white;
+    border-radius: 50%;
+    width: $icon-round-size;
+    height: $icon-round-size;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &--pointer {
+    cursor: pointer;
+  }
+
+  &--spin {
+    animation: spin 4s linear infinite;
+  }
+
+  @-moz-keyframes spin {
+    100% { transform: rotate(360deg); }
+  }
+  @-webkit-keyframes spin {
+    100% { transform: rotate(360deg); }
+  }
+  @keyframes spin {
+    100% {
+      transform:rotate(360deg);
+    }
+  }
+}

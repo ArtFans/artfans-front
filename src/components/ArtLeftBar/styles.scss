@@ -1,0 +1,31 @@
+@import 'src/assets/scss/variables';
+
+.left-bar {
+  border-right: $border-light-gray;
+  position: fixed;
+  align-self: flex-start;
+  top: 0;
+  left: 0;
+  background: $color-white;
+  z-index: 10;
+  width: $leftbar-width;
+  height: 100%;
+
+  &__link {
+    display: block;
+    padding: $gutter-sm $gutter-md;
+    line-height: 0;
+    cursor: pointer;
+    color: $color-gray;
+
+    &--arrow {
+      color: $color-rose;
+      padding: $gutter-md;
+      padding-bottom: $gutter-lg;
+    }
+
+    &:hover, &.active {
+      color: $color-sami-black;
+    }
+  }
+}

@@ -1,0 +1,54 @@
+@import 'src/assets/scss/variables';
+
+.login {
+  background: $color-white;
+  width: $login-modal-width;
+  height: fit-content;
+  align-self: center;
+
+  &__header {
+    display: flex;
+    color: $color-gray;
+    align-items: center;
+    border-bottom: $border-light-gray;
+    padding-left: $gutter-md;
+
+    .art-button {
+      margin-left: auto;
+      color: $color-gray;
+    }
+  }
+
+  &__title {
+    font-size: $font-size-xxxl;
+    margin-bottom: $gutter-xs;
+    color: $color-sami-black;
+  }
+
+  &__icon {
+    background: $color-violet;
+    color: $color-sami-black;
+    width: 60px;
+    height: 60px;
+    margin: 0 auto $gutter-md;
+  }
+
+  &__inputs {
+    margin: $gutter-lg auto 0;
+    max-width: 80%;
+  }
+
+  &__body {
+    padding: $gutter-lg;
+    text-align: center;
+    color: $color-gray;
+  }
+
+  &__footer {
+    border-top: $border-light-gray;
+
+    button {
+      width: 100%;
+    }
+  }
+}

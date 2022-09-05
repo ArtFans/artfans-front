@@ -1,0 +1,33 @@
+@import 'src/assets/scss/variables';
+
+.art-card {
+  width: 100%;
+  margin-bottom: $gutter-md;
+
+  &--tiny {
+    margin-bottom: $gutter-xs;
+  }
+
+  &--tiny .art-card__img {
+    height: $card-img-height-tiny;
+  }
+
+  &__img {
+    display: block;
+    height: $card-img-height;
+    position: relative;
+    overflow: hidden;
+
+    & img, & video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+  }
+
+  &__video {
+    position: absolute;
+    height: 100%;
+  }
+}

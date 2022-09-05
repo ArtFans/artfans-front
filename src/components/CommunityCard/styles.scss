@@ -1,0 +1,59 @@
+@import 'src/assets/scss/variables';
+
+.community-card {
+  background: $color-white;
+  border: $border-light-gray;
+
+  &__body {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: $gutter-sm;
+  }
+
+  &__avatar {
+    margin-bottom: $gutter-xs;
+  }
+
+  &__name {
+    color: $color-sami-black;
+    font-weight: $font-weight-xl;
+  }
+
+  &__username {
+    color: $color-gray;
+    font-size: $font-size-xs;
+    margin-bottom: $gutter-xs;
+  }
+
+  &__followers {
+    color: $color-sami-black;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-md;
+  }
+
+  &__items {
+    padding: 0 $gutter-sm $gutter-sm $gutter-sm;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: $font-size-lg;
+    font-weight: $font-weight-xl;
+
+    & .icon {
+      color: $color-sami-gray;
+      margin-right: $gutter-xxxs;
+    }
+  }
+
+  &__follow {
+    border-top: $border-light-gray;
+
+    &--following {
+      color: $color-gray;
+    }
+  }
+}

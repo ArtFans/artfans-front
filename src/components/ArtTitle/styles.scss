@@ -1,0 +1,12 @@
+@import 'src/assets/scss/variables';
+
+.art-title {
+  color: $color-gray;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  user-select: none;
+  font: {
+    size: $font-size-sm;
+    weight: $font-weight-xl;
+  }
+}

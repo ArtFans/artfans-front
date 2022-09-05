@@ -1,0 +1,138 @@
+@import 'src/assets/scss/variables';
+
+.profile-page {
+  width: 100%;
+
+  &__banner {
+    height: 400px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+  }
+
+  &__banner-edit {
+    position: absolute;
+    right: $gutter-md;
+    bottom: $gutter-md;
+  }
+
+  &__user, &__header, &__content {
+    display: flex;
+    width: 100%;
+  }
+
+  &__about, &__avatar {
+    max-width: $profile-social-width;
+    width: 100%;
+  }
+
+  &__avatar {
+    position: relative;
+    cursor: pointer;
+    border-right: $border-light-gray;
+  }
+
+  &__avatar-img {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    max-height: initial;
+  }
+
+  &__header {
+    border-bottom: $border-light-gray;
+    border-top: $border-light-gray;
+  }
+
+  &__who {
+    display: flex;
+    align-items: center;
+    padding: 0 $gutter-md;
+  }
+
+  &__name {
+    position: relative;
+
+    & h1 {
+      margin-right: $gutter-lg;
+      font: {
+        size: $font-size-xxl;
+        weight: $font-weight-xl;
+      };
+    }
+  }
+
+  &__status {
+    position: absolute;
+  }
+
+  &__username {
+    color: $color-gray;
+    font: {
+      size: $font-size-md;
+      weight: $font-weight-md;
+    }
+  }
+
+  &__header-button {
+    min-width: $profile-button-width;
+    margin-left: auto;
+    border-left: $border-light-gray;
+
+    &--following {
+      color: $color-gray;
+    }
+  }
+
+  &__about {
+    height: 100%;
+    padding-top: $gutter-md;
+    margin-left: initial;
+  }
+
+  &__bio {
+    font-weight: $font-weight-xl;
+    margin-bottom: $gutter-sm;
+  }
+
+  &__place {
+    font-weight: $font-weight-md;
+    line-height: $line-height-xxl;
+    margin-bottom: $gutter-xxs;
+  }
+
+  &__socials {
+    margin-bottom: $gutter-lg;
+  }
+
+  &__socials-link {
+    line-height: 0;
+    color: $color-black;
+    margin-right: $gutter-sm;
+
+    &:hover {
+      color: $color-rose;
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  &__tabs {
+    width: 100%;
+    border-left: $border-light-gray;
+  }
+
+  &__art {
+    @media screen and #{$media-xl} {
+      max-width: calc(100% / 3);
+    }
+
+    @media screen and #{$media-lg} {
+      max-width: calc(100% / 2);
+    }
+  }
+}

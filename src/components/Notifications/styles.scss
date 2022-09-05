@@ -1,0 +1,50 @@
+@import 'src/assets/scss/variables';
+
+.notifications {
+  position: relative;
+
+  &__dropdown {
+    top: $gutter-md;
+    right: -$gutter-xxxs;
+  }
+
+  &__item {
+    display: flex;
+    border-bottom: $border-light-gray;
+
+    &:last-child {
+      border: 0;
+    }
+  }
+
+  &__item-icon {
+    display: flex;
+    align-self: center;
+    padding: $gutter-xs;
+
+    & svg {
+      stroke: $color-sami-gray;
+    }
+  }
+
+  &__item-content {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: $gutter-xxs $gutter-xs;
+    font-size: $font-size-xs;
+    border-left: $border-light-gray;
+  }
+
+  &__item-title {
+    font-weight: $font-weight-xl;
+  }
+
+  &__item-tagline {
+    color: $color-sami-gray;
+
+    & a {
+      color: $color-black;
+    }
+  }
+}

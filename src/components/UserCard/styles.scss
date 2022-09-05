@@ -1,0 +1,46 @@
+@import 'src/assets/scss/variables';
+
+.user-card {
+  display: flex;
+  align-items: center;
+  padding: $gutter-xxs;
+
+  &__info {
+    margin: 0 $gutter-xxs;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width: 170px;
+  }
+
+  &__username {
+    color: $color-sami-black;
+    font: {
+      size: $font-size-sm;
+      weight: $font-weight-xl;
+    }
+  }
+
+  &__issued {
+    font-size: $font-size-xs;
+    color: $color-gray;
+  }
+
+  &__social {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+  }
+
+  &__social-comment {
+    margin-right: $gutter-md;
+  }
+
+  &__social--liked {
+    color: $color-rose;
+  }
+
+  &__amount {
+    margin-left: $gutter-xxxs;
+    font-weight: $font-weight-xl;
+  }
+}

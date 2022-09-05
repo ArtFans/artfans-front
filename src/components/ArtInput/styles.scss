@@ -1,0 +1,28 @@
+@import 'src/assets/scss/variables';
+
+.art-input {
+  width: 100%;
+  border-bottom: $border-light-gray;
+  margin-bottom: $gutter-md;
+
+  &__title {
+    color: $color-sami-gray;
+    text-align: left;
+    font: {
+      size: $font-size-sm;
+      weight: $font-weight-md;
+    }
+  }
+
+  &__field {
+    width: 100%;
+    font-size: $font-size-lg;
+    padding: $gutter-xxxs 0;
+    font-weight: $font-weight-md;
+  }
+
+  &__required {
+    color: $color-rose;
+    margin-left: $gutter-xxxs;
+  }
+}

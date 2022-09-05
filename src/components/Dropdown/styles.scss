@@ -1,0 +1,32 @@
+@import 'src/assets/scss/variables';
+
+.dropdown {
+  width: $dropdown-width;
+  position: absolute;
+  right: 0;
+  margin-top: $gutter-sm;
+  box-shadow: 0 0 50px $color-light-gray;
+
+  &__content {
+    position: relative;
+    border: $border-light-gray;
+    background: $color-white;
+  }
+
+  &__cursor, &__cursor-shadow {
+    position: absolute;
+    right: $gutter-xxs;
+    top: -$gutter-xxxs;
+    width: 10px;
+    height: 10px;
+    border: $border-light-gray;
+    transform: rotate(45deg);
+  }
+
+  &__cursor {
+    background: $color-white;
+    border: 0;
+    top: -($gutter-xxxs - 1px);
+    z-index: 1;
+  }
+}

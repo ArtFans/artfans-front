@@ -1,0 +1,15 @@
+@import 'src/assets/scss/variables';
+
+.stat {
+  margin-bottom: $gutter-md;
+
+  &__value {
+    font-size: $font-size-xxl;
+    font-weight: $font-weight-xl;
+  }
+
+  &__name {
+    color: $color-gray;
+    font-weight: $font-weight-md;
+  }
+}

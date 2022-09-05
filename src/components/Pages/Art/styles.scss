@@ -1,0 +1,149 @@
+@import 'src/assets/scss/variables';
+
+.art-page {
+  display: flex;
+
+  @media screen and #{$media-xs} {
+    flex-direction: column;
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    max-width: 40%;
+    width: 100%;
+
+    @media screen and #{$media-xs} {
+      max-width: 100%;
+    }
+  }
+
+  &__content {
+    max-width: 60%;
+    width: 100%;
+
+    @media screen and #{$media-xs} {
+      max-width: 100%;
+    }
+  }
+
+  &__img-container {
+    position: relative;
+  }
+
+  &__img-overlay {
+    cursor: pointer;
+
+    & img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+  }
+
+  &__icon {
+    position: absolute;
+    z-index: 5;
+
+    &--back {
+      top: $gutter-md;
+      left: $gutter-md;
+    }
+
+    &--zoom {
+      right: $gutter-md;
+      bottom: $gutter-md;
+    }
+  }
+
+  &__other-nfts {
+    height: 100%;
+    padding-top: $gutter-lg;
+    border-right: $border-light-gray;
+
+    @media screen and #{$media-xs} {
+      display: none;
+    }
+
+    &--mobile {
+      height: auto;
+      display: none;
+      padding-bottom: $gutter-md;
+      border-right: 0;
+
+      @media screen and #{$media-xs} {
+        display: block;
+      }
+    }
+  }
+
+  &__other-nft-btn {
+    border-top: $border-light-gray;
+    border-bottom: $border-light-gray;
+  }
+
+  &__other-nft {
+    @media screen and #{$media-lg} {
+      max-width: calc(100% / 2);
+    }
+
+    @media screen and #{$media-xxs} {
+      max-width: 100%;
+    }
+  }
+
+  &__title {
+    margin-bottom: $gutter-sm;
+  }
+
+  &__header {
+    padding-top: $gutter-sm;
+    padding-bottom: $gutter-md;
+  }
+
+  &__header-title {
+    font-size: $font-size-xxxl;
+  }
+
+  &__user {
+    display: flex;
+    padding: 0;
+    border: {
+      top: $border-light-gray;
+      bottom: $border-light-gray;
+    }
+  }
+
+  &__user-card {
+    padding: $gutter-sm $gutter-md;
+    width: 100%;
+  }
+
+  &__buy {
+    border-left: $border-light-gray;
+    margin-left: auto;
+    width: 30%;
+    text-align: center;
+
+    & span {
+      display: block;
+    }
+  }
+
+  &__usd {
+    color: $color-gray;
+    font-weight: $font-weight-md;
+  }
+
+  &__about {
+    padding: $gutter-lg $gutter-md;
+    border-bottom: $border-light-gray;
+  }
+
+  &__description {
+    font-size: $font-size-lg;
+    color: $color-gray;
+    line-height: $line-height-lg;
+  }
+}

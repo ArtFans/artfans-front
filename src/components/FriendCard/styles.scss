@@ -1,0 +1,30 @@
+@import 'src/assets/scss/variables';
+
+.friend-card {
+  display: flex;
+  align-items: center;
+  padding: 0 $gutter-md;
+  margin-bottom: $gutter-xxs;
+
+  .notification-bell {
+    margin-right: $gutter-xxs;
+  }
+
+  &__username {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width: $friend-card-username-width;
+    color: $color-sami-black;
+    margin-left: $gutter-xxs;
+    font: {
+      size: $font-size-sm;
+      weight: $font-weight-md;
+    }
+  }
+
+  &__status {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+  }
+}

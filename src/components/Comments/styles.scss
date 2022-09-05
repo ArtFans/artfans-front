@@ -1,0 +1,41 @@
+@import 'src/assets/scss/variables';
+
+.comments {
+  &__header {
+    display: flex;
+    border-bottom: $border-light-gray;
+  }
+
+  &__message {
+    background: $color-mid-gray;
+    padding: $gutter-md;
+    outline: none;
+    resize: none;
+    overflow: hidden;
+    width: 100%;
+    color: $color-sami-black;
+  }
+
+  &__send {
+    align-self: flex-start;
+    padding: $gutter-md;
+    line-height: 0;
+  }
+
+  &__list {
+    padding-top: $gutter-sm;
+  }
+
+  &__item {
+    margin-bottom: $gutter-md;
+
+    &--reply {
+      padding-left: $gutter-lg;
+    }
+  }
+
+  &__item-user {
+    padding: 0;
+    margin-bottom: $gutter-sm;
+  }
+}

@@ -1,0 +1,25 @@
+@import 'src/assets/scss/variables';
+
+.community-page {
+  width: 100%;
+
+  &__user {
+    margin-bottom: $gutter-xs;
+
+    @media screen and #{$media-xl} {
+      max-width: calc(100% / 5);
+    }
+
+    @media screen and #{$media-lg} {
+      max-width: calc(100% / 4);
+    }
+
+    @media screen and #{$media-xs} {
+      max-width: calc(100% / 3);
+    }
+
+    @media screen and #{$media-xxs} {
+      max-width: 100%;
+    }
+  }
+}

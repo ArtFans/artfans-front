@@ -1,0 +1,73 @@
+@import 'src/assets/scss/variables';
+
+.header-menu {
+  display: flex;
+  padding-right: $gutter-md;
+
+  &__nav {
+    display: flex;
+    align-items: center;
+    padding-left: $gutter-sm;
+  }
+
+  &__nav-item {
+    margin: 0 $gutter-xs;
+  }
+
+  &__icon {
+    cursor: pointer;
+    position: relative;
+  }
+
+  &__user {
+    position: relative;
+    margin-right: 0;
+  }
+
+  &__user-dropdown {
+    right: $gutter-xxxs;
+  }
+
+  &__user-block {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: $border-light-gray;
+  }
+
+  &__user-wallet {
+    width: 100%;
+    padding: $gutter-sm;
+  }
+
+  &__user-add {
+    border-left: $border-light-gray;
+  }
+
+  &__user-title {
+    color: $color-gray;
+    text-transform: uppercase;
+    margin-bottom: $gutter-xxxs;
+    font: {
+      size: $font-size-xxs;
+      weight: $font-weight-xl;
+    }
+  }
+
+  &__user-balance {
+    font-weight: $font-weight-xl;
+
+    &--md {
+      font-size: $font-size-xl;
+    }
+  }
+
+  &__stat {
+    .stat__value {
+      font-size: $font-size-md;
+    }
+
+    .stat__name {
+      font-size: $font-size-xs;
+    }
+  }
+}

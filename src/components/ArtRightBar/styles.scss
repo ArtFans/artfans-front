@@ -1,0 +1,25 @@
+@import 'src/assets/scss/variables';
+
+.right-bar {
+  background: $color-white;
+  border-left: $border-light-gray;
+  max-width: $rightbar-width;
+  width: 100%;
+  overflow-y: auto;
+  padding-top: $gutter-md;
+  margin-left: auto;
+  min-height: calc(100vh - #{$header-height});
+
+  @media screen and #{$media-sm} {
+    display: none;
+  }
+
+  &__title {
+    margin-bottom: $gutter-xs;
+    padding-left: $gutter-md;
+  }
+
+  &__section-users {
+    padding-bottom: $gutter-lg;
+  }
+}

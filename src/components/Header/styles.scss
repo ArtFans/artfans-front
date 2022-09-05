@@ -1,0 +1,44 @@
+@import 'src/assets/scss/variables';
+
+.header {
+  background: $color-white;
+  border-bottom: $border-light-gray;
+  position: relative;
+  z-index: 15;
+  padding-left: $gutter-md;
+  display: flex;
+  justify-content: space-between;
+
+  &__logo {
+    color: $color-sami-black;
+    display: inline-block;
+    letter-spacing: 1px;
+    padding: $gutter-md 0;
+    margin-right: $gutter-sm;
+    line-height: $line-height-lg;
+    font: {
+      size: $font-size-xl;
+      weight: $font-weight-xxl;
+    }
+  }
+
+  &__tagline {
+    color: $color-sami-gray;
+    font-size: $font-size-sm;
+
+    @media screen and #{$media-xxs} {
+      display: none;
+    }
+  }
+
+  &__button {
+    border: {
+      left: $border-light-gray;
+      right: $border-light-gray;
+    }
+
+    &--login {
+      border-right: 0;
+    }
+  }
+}

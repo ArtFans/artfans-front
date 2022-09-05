@@ -1,0 +1,44 @@
+@import 'src/assets/scss/variables';
+
+.notification-bell {
+  cursor: pointer;
+  position: relative;
+  line-height: 0;
+
+  &__count {
+    font-weight: $font-weight-xl;
+  }
+}
+
+.notification-bell--md {
+  .notification-bell__count {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: $color-rose;
+    color: $color-white;
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    right: -6px;
+    bottom: -4px;
+    border-radius: 50%;
+    font-size: $font-size-xxs;
+  }
+}
+
+.notification-bell--sm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    stroke: $color-gray;
+  }
+
+  .notification-bell__count {
+    color: $color-gray;
+    font-size: $font-size-xs;
+    margin-left: $font-size-xxxs;
+  }
+}

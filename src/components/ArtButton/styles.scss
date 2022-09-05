@@ -1,0 +1,34 @@
+@import 'src/assets/scss/variables';
+
+.art-button {
+  color: $color-black;
+  display: flex;
+  align-items: center;
+  text-transform: uppercase;
+  justify-content: center;
+  font-weight: $font-weight-xl;
+  line-height: $line-height-lg;
+  letter-spacing: 1px;
+
+  &:hover {
+    color: $color-rose !important;
+  }
+
+  &--large {
+    padding: $gutter-md;
+  }
+
+  &--small {
+    padding: $gutter-sm;
+    font-size: $font-size-sm;
+  }
+
+  &--tiny {
+    padding: $gutter-xs;
+    font-size: $font-size-xs;
+  }
+}
+
+.art-button__text--icon {
+  margin-left: $gutter-xxs;
+}

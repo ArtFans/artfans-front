@@ -1,0 +1,28 @@
+@import 'src/assets/scss/variables';
+@import 'node_modules/swiper/swiper';
+
+.art-slider {
+  position: relative;
+
+  &__swipe {
+    padding: 0 $gutter-md;
+  }
+
+  &__btn {
+    position: absolute;
+    z-index: 5;
+    bottom: 0;
+    top: -$gutter-sm;
+    margin: auto;
+    background: $color-white;
+    border-radius: 50%;
+
+    &--backward {
+      left: #{$gutter-md - $gutter-xxxs}
+    }
+
+    &--forward {
+      right: #{$gutter-md - $gutter-xxxs};
+    }
+  }
+}

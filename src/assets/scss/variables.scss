@@ -1,0 +1,78 @@
+// colors
+$color-white: #FFFFFF;
+$color-black: #000000;
+$color-sami-black: #1A1A1A;
+$color-gray: #999999;
+$color-light-gray: #E5E5E5;
+$color-mid-gray: #F7F7F7;
+$color-sami-gray: #AAAAAA;
+$color-rose: #BB084F;
+$color-green: #8DC63F;
+$color-violet: #ACABFB;
+
+// icon size
+$icon-size-sm: 15px;
+$icon-size-md: 20px;
+
+// font size
+$font-size-xxxs: 3px;
+$font-size-xxs: 8px;
+$font-size-xs: 10px;
+$font-size-sm: 12px;
+$font-size-md: 14px;
+$font-size-lg: 16px;
+$font-size-xl: 18px;
+$font-size-xxl: 20px;
+$font-size-xxxl: 32px;
+
+// font weight
+$font-weight-xxs: 200; // ExtraLight
+$font-weight-xs: 300;  // Light
+$font-weight-sm: 400;  // Regular
+$font-weight-md: 500;  // Medium
+$font-weight-lg: 600;  // SemiBold
+$font-weight-xl: 700;  // Bold
+$font-weight-xxl: 800; // ExtraBold
+
+// line height
+$line-height-sm: 16px;
+$line-height-md: 18px;
+$line-height-lg: 20px;
+$line-height-xl: 22px;
+$line-height-xxl: 25px;
+
+// gutter
+$gutter-xxxs: 5px;
+$gutter-xxs: 10px;
+$gutter-xs: 15px;
+$gutter-sm: 20px;
+$gutter-md: 30px;
+$gutter-lg: 40px;
+
+// borders
+$border-light-gray: 1px solid $color-light-gray;
+
+// element restrictions
+$container-width: 1600px;
+$dropdown-width: 260px;
+$leftbar-width: 80px;
+$rightbar-width: 325px;
+$card-img-height: 300px;
+$card-img-height-tiny: 150px;
+$header-height: 81px;
+$friend-card-username-width: 140px;
+$profile-banner-height: 400px;
+$profile-social-width: 300px;
+$profile-button-width: 190px;
+$icon-round-size: 35px;
+$settings-page-nav-width: 290px;
+$settings-profile-avatar-width: 270px;
+$login-modal-width: 600px;
+
+// responsive
+$media-xxs: '(max-width: 414px)';
+$media-xs: '(max-width: 834px)';
+$media-sm: '(max-width: 1024px)';
+$media-md: '(max-width: 1280px)';
+$media-lg: '(max-width: 1440px)';
+$media-xl: '(max-width: 1740px)';
