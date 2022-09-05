@@ -28,38 +28,32 @@ import './styles.scss';
 export const Art = () => {
   const [imageOpened, setImageOpened] = useState(false);
   const navigate = useNavigate();
-  const { state } = useLocation();
+  const { state }: { state: any } = useLocation();
   const { id } = useParams();
 
-  const [art, setArt] = useState<any>(state);
+  const [art, setArt] = useState<any>();
   const [arts, setArts] = useState([]);
-  const [isLoading, setLoading] = useState(!state);
 
   const { media, isVideo } = useArtMetadata(art?.metadata);
   const { count } = useContext<any>(CommentsContext);
 
   const fetchArt = useCallback(async () => {
-    const result = await ApiService.getArtById(id);
-    setArt(result);
-    setLoading(false);
-  }, [id]);
+    const artResult = state || await ApiService.getArtById(id);
+    setArt(artResult);
 
-  const fetchArts = useCallback(async () => {
-    if (art?.owner_id) {
-      const result = await ApiService.getFriendsArts({
-        friends: [art.owner_id]
-      });
-
-      setArts(result.filter((item: any) => item._id !== id));
-    }
-  }, [id, art?.owner_id]);
+    const artsResult = await ApiService.getFriendsArts({
+      friends: [state.owner_id]
+    });
+    setArts(artsResult.filter((item: any) => item._id !== id));
+  }, [id, state]);
 
   useEffect(() => {
-    if (!art) fetchArt();
-    if (art) fetchArts();
-  }, [art]);
+    fetchArt();
+  }, [id]);
 
-  return isLoading ? <Loader /> : (
+  if (!art) return <Loader />;
+
+  return (
     <div className="art-page">
       <div className="art-page__item">
         <div className="art-page__img-container">

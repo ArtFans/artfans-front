@@ -17,6 +17,7 @@ const CommentsProvider = () => {
   const { id } = useParams();
 
   const fetchComments = useCallback(async () => {
+    setComments([]);
     try {
       const result = await NearService.contract.get_post_messages({
         post_id: id,
@@ -61,7 +62,7 @@ const CommentsProvider = () => {
 
   useEffect(() => {
     fetchComments();
-  }, []);
+  }, [id]);
 
   return (
     <CommentsContext.Provider

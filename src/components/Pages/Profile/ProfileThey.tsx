@@ -34,6 +34,8 @@ export const ProfileThey = ({ id }: any) => {
   ), [id, friends]);
 
   const fetchUser = useCallback(async () => {
+    setPageLoading(true);
+    setProfile({});
     try {
       const result = await NearService.contract.get_profile({
         account_id: id
@@ -77,7 +79,7 @@ export const ProfileThey = ({ id }: any) => {
 
   useEffect(() => {
     fetchUser();
-  }, []);
+  }, [id]);
 
   const followBtn = cx(
     'profile-page__header-button',
