@@ -70,7 +70,7 @@
     &--mobile {
       height: auto;
       display: none;
-      padding-bottom: $gutter-md;
+      border-bottom: $border-light-gray;
 
       @media screen and #{$media-xs} {
         display: block;

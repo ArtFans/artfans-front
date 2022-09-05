@@ -1,4 +1,11 @@
-import React, { useContext } from 'react';
+import React, {
+  useContext,
+  useCallback,
+  useEffect,
+  useState
+} from 'react';
+
+import ApiService from 'src/services/ApiService';
 
 import Avatar from '../Avatar';
 import FriendCard from '../FriendCard';
@@ -10,7 +17,20 @@ import { UserContext } from 'src/providers/UserProvider';
 import './styles.scss';
 
 export const ArtRightBar = () => {
-  const { user: { friends } } = useContext<any>(UserContext);
+  // const [isLoading, setIsLoading] = useState(true);
+  const [peoples, setPeoples] = useState([]);
+  const { user: { friends }, isLoggedIn } = useContext<any>(UserContext);
+
+  const fetchPeoples = async () => {
+    setPeoples(await ApiService.getRandomUsers());
+    // setIsLoading(false);
+  };
+
+  useEffect(() => {
+    fetchPeoples();
+  }, []);
+
+  if (!isLoggedIn) return null;
 
   return (
     <div className="right-bar">
@@ -20,34 +40,16 @@ export const ArtRightBar = () => {
         </ArtTitle>
         <div className="right-bar__section-users">
           <ArtSlider>
-            <Avatar
-              id="4ro34roi34j"
-              name="Peter Parker"
-              username="spider.man"
-              size="xl"
-              className="right-bar__user"
-            />
-            <Avatar
-              id="84yf8gh3874hh"
-              name="Zohan Wills"
-              username="zohan"
-              size="xl"
-              className="right-bar__user"
-            />
-            <Avatar
-              id="ojvf89yeh9f"
-              name="Recardo Pedro"
-              username="johndoe"
-              size="xl"
-              className="right-bar__user"
-            />
-            <Avatar
-              id="8uf9djfsojnfls"
-              name="William Will"
-              username="will.william"
-              size="xl"
-              className="right-bar__user"
-            />
+            {peoples.map((item) => (
+              <Avatar
+                key={item}
+                id={item}
+                name={item}
+                username={item}
+                size="xl"
+                className="right-bar__user"
+              />
+            ))}
           </ArtSlider>
         </div>
       </div>

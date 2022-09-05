@@ -9,6 +9,10 @@
     width: 100%;
     max-width: $settings-page-nav-width;
     border-right: $border-light-gray;
+
+    @media screen and #{$media-xs} {
+      display: none;
+    }
   }
 
   &__link {
@@ -67,6 +71,10 @@
 
   &__profile {
     display: flex;
+
+    @media screen and #{$media-xxs} {
+      flex-direction: column;
+    }
   }
 
   &__profile-avatar {
@@ -83,6 +91,12 @@
       height: 100%;
       opacity: 0;
       cursor: pointer;
+    }
+
+    @media screen and #{$media-xxs} {
+      margin-right: 0;
+      max-width: 100%;
+      margin-bottom: $gutter-md;
     }
   }
 

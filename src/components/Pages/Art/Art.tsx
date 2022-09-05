@@ -28,7 +28,7 @@ import './styles.scss';
 export const Art = () => {
   const [imageOpened, setImageOpened] = useState(false);
   const navigate = useNavigate();
-  const { state }: { state: any } = useLocation();
+  const { state } = useLocation();
   const { id } = useParams();
 
   const [art, setArt] = useState<any>();
@@ -42,8 +42,9 @@ export const Art = () => {
     setArt(artResult);
 
     const artsResult = await ApiService.getFriendsArts({
-      friends: [state.owner_id]
+      friends: [artResult.owner_id]
     });
+
     setArts(artsResult.filter((item: any) => item._id !== id));
   }, [id, state]);
 

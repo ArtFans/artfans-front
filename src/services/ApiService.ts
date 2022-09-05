@@ -122,7 +122,7 @@ class ApiService {
         method: 'get'
       });
 
-      console.log(data);
+      return data.data;
     } catch (error) {
       console.log(error);
     }
