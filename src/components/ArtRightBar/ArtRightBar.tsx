@@ -1,6 +1,5 @@
 import React, {
   useContext,
-  useCallback,
   useEffect,
   useState
 } from 'react';
@@ -17,13 +16,11 @@ import { UserContext } from 'src/providers/UserProvider';
 import './styles.scss';
 
 export const ArtRightBar = () => {
-  // const [isLoading, setIsLoading] = useState(true);
-  const [peoples, setPeoples] = useState([]);
+  const [suggestion, setSuggestions] = useState([]);
   const { user: { friends }, isLoggedIn } = useContext<any>(UserContext);
 
   const fetchPeoples = async () => {
-    setPeoples(await ApiService.getRandomUsers());
-    // setIsLoading(false);
+    setSuggestions(await ApiService.getRandomUsers());
   };
 
   useEffect(() => {
@@ -40,7 +37,7 @@ export const ArtRightBar = () => {
         </ArtTitle>
         <div className="right-bar__section-users">
           <ArtSlider>
-            {peoples.map((item) => (
+            {suggestion.map((item) => (
               <Avatar
                 key={item}
                 id={item}

@@ -1,5 +1,5 @@
-import type {ReactNode} from 'react';
-import React, {createContext, useEffect, useState} from 'react';
+import React, { createContext, useEffect, useState } from 'react';
+import type { ReactNode } from 'react';
 
 import ApiService from '../services/ApiService';
 import NearService from '../services/NearService';
@@ -15,6 +15,7 @@ const UserProvider = ({ children }: { children: ReactNode }) => {
     artsCount: 0
   });
   const [isLoggedIn, setLoggedIn] = useState(!!window.nearAddress.length);
+  const [currency, setCurrency] = useState(0);
 
   const fetchMyArts = async () => {
     const { data, count } = await ApiService.getMyArts({ limit: 15 });
@@ -97,12 +98,18 @@ const UserProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
+  const fetchCurrency = async () => {
+    const { current_price } = await ApiService.getCurrency();
+    setCurrency(current_price);
+  };
+
   useEffect(() => {
     if (window.nearAddress) {
       fetchProfile();
       fetchMyArts();
       fetchFriends();
     }
+    fetchCurrency();
   }, []);
 
   return (
@@ -110,6 +117,7 @@ const UserProvider = ({ children }: { children: ReactNode }) => {
       value={{
         user,
         isLoggedIn,
+        currency,
         setLoggedIn,
         addFriend,
         updateProfile

@@ -20,6 +20,7 @@ import Comments from 'src/components/Comments';
 import UserCard, { UserCardComments, UserCardActions } from 'src/components/UserCard';
 import Loader from 'src/components/Loader';
 import { ArtOtherNft } from './ArtOtherNft';
+import { ArtBuy } from './ArtBuy';
 
 import { CommentsContext } from 'src/providers/CommentsProvider';
 
@@ -104,12 +105,7 @@ export const Art = () => {
             <UserCardComments count={count} />
             <UserCardActions artId={art._id} count={art.total_likes} />
           </UserCard>
-          {art.has_price && (
-            <ArtButton className="art-page__buy" size="small">
-              <span>Buy {formatNumber(art.price)}N</span>
-              <span className="art-page__usd">$2 500 232</span>
-            </ArtButton>
-          )}
+          {art.has_price && <ArtBuy price={art.price} />}
         </Container>
         {art.metadata.description && (
           <Container className="art-page__about">

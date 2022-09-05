@@ -30,7 +30,7 @@ class ApiService {
       });
 
       const [result] = data;
-      console.log(result);
+      return result || {};
     } catch (error) {
       console.log(error);
     }
