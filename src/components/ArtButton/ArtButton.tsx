@@ -3,6 +3,7 @@ import cx from 'classnames';
 import { Link } from 'react-router-dom';
 
 import Icon from '../Icon';
+import Loader from '../Loader';
 
 import './styles.scss';
 
@@ -44,7 +45,7 @@ export const ArtButton = (
           </span>
         )}
       </>
-    ) : <Icon name="loader" isSpin={true} />,
+    ) : <Loader isBig={false} />,
     ...props
   });
 };

@@ -15,9 +15,7 @@ export const ProfileMe = ({ user }: any) => {
 
   return (
     <div className="profile-page">
-      <ProfileBanner
-        url="https://upload.wikimedia.org/wikipedia/commons/6/6c/Herjangsfjorden_%26_Ofotfjorden%2C_wide%2C_2009_09.jpg"
-      />
+      <ProfileBanner />
       <div className="profile-page__header">
         <ProfileAvatar url={profile.image} />
         <div className="profile-page__user">

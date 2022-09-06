@@ -22,7 +22,7 @@ export const ArtInfiniteScroll = (
       dataLength={items.length}
       next={loadMore}
       hasMore={hasMore}
-      loader={<Loader />}
+      loader={<Loader type={2} />}
       scrollThreshold={1}
       className="art-infinite-scroll"
     >

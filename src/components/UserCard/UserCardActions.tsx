@@ -7,6 +7,7 @@ import React, {
 import cx from 'classnames';
 
 import Icon from '../Icon';
+import Loader from '../Loader';
 
 import NearService from 'src/services/NearService';
 
@@ -104,10 +105,7 @@ export const UserCardActions = (
 
   return (
     <button className={likesClass} onClick={onClick}>
-      <Icon
-        isSpin={isLoading}
-        name={isLoading ? 'loader' : actionsTypes[type]}
-      />
+      {isLoading ? <Loader isBig={false} /> : <Icon name={actionsTypes[type]} />}
       {!!likesCount && <span className="user-card__amount">{likesCount}</span>}
     </button>
   );

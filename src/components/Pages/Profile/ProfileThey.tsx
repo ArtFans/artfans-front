@@ -10,7 +10,6 @@ import cx from 'classnames';
 import NearService from 'src/services/NearService';
 
 import ArtButton from 'src/components/ArtButton';
-import Loader from 'src/components/Loader';
 import Container from 'src/components/Container';
 import { ProfileBanner } from './ProfileBanner';
 import { ProfileAvatar } from './ProfileAvatar';
@@ -63,7 +62,7 @@ export const ProfileThey = ({ id }: any) => {
   const onFollow = useCallback(async () => {
     setFriendAdding(true);
     try {
-      if (isFriend) {
+      if (!isFriend) {
         await NearService.contract.add_friend({
           friend_id: id
         });
@@ -86,7 +85,7 @@ export const ProfileThey = ({ id }: any) => {
     { 'profile-page__header-button--following': isFriend }
   );
 
-  if (isPageLoading) return <Loader />;
+  if (isPageLoading) return null;
 
   return (
     <div className="profile-page">

@@ -2,6 +2,7 @@ import React, { useRef, useContext, useCallback } from 'react';
 import TextareaAutosize from 'react-textarea-autosize';
 
 import Icon from '../Icon';
+import Loader from '../Loader';
 import Container from '../Container';
 import { CommentsItem } from './CommentsItem';
 
@@ -44,10 +45,7 @@ export const Comments = ({ artId }: any) => {
           onKeyDown={handleKeyDown}
         />
         <button className="comments__send" onClick={onSend}>
-          <Icon
-            isSpin={loading}
-            name={loading ? 'loader' : 'send'}
-          />
+          {loading ? <Loader isBig={false} /> : <Icon name="send" />}
         </button>
       </div>
       <Container className="comments__list">
