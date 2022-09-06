@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 
+import TBA from '../TBA';
 import NotificationBell from '../NotificationBell';
 import Dropdown from '../Dropdown';
 import { NotificationsItem } from './NotificationsItem';
@@ -7,7 +8,7 @@ import { NotificationsItem } from './NotificationsItem';
 import './styles.scss';
 
 export const Notifications = () => {
-  const notificationsCount = 15;
+  const notificationsCount = 0;
   const [dropdownVisible, setVisibility] = useState(false);
 
   return (
@@ -21,6 +22,7 @@ export const Notifications = () => {
         open={dropdownVisible}
         onClickOutside={() => setVisibility(!dropdownVisible)}
       >
+        <TBA />
         <NotificationsItem type="like" user="bob" />
         <NotificationsItem type="follower" user="bob" />
         <NotificationsItem type="comment" user="John Doe" />

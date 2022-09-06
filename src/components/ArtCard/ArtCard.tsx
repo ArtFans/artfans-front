@@ -14,7 +14,8 @@ export const ArtCard = (props: any) => {
     total_likes,
     owner_id,
     isTiny = false,
-    metadata
+    metadata,
+    name
   } = props;
 
   const { issuedAt, media, isVideo } = useArtMetadata(metadata);
@@ -44,7 +45,12 @@ export const ArtCard = (props: any) => {
         ) : <img data-src={media} src={media} alt="" />}
       </Link>
       {!isTiny && (
-        <UserCard id={owner_id} username={owner_id} issuedAt={issuedAt}>
+        <UserCard
+          id={owner_id}
+          username={owner_id}
+          issuedAt={issuedAt}
+          name={name}
+        >
           <UserCardActions artId={_id} count={total_likes} />
         </UserCard>
       )}

@@ -2,4 +2,9 @@
 
 .explore-page {
   width: 100%;
+
+  &__container {
+    position: relative;
+    overflow: hidden;
+  }
 }

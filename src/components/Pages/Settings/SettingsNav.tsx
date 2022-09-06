@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
+import TBA from 'src/components/TBA';
 import Icon from 'src/components/Icon';
 
 export const SettingsNav = () => (
@@ -9,17 +10,20 @@ export const SettingsNav = () => (
       Edit Profile
       <Icon name="chevron-right" />
     </NavLink>
-    <NavLink to="/settings/my-nfts" className="settings-page__link">
-      My NFTs
-      <Icon name="chevron-right" />
-    </NavLink>
-    <NavLink to="/settings/my-collections" className="settings-page__link">
-      My Collections
-      <Icon name="chevron-right" />
-    </NavLink>
-    <NavLink to="/settings/password" className="settings-page__link">
-      Password
-      <Icon name="chevron-right" />
-    </NavLink>
+    <div style={{ position: 'relative' }}>
+      <TBA />
+      <NavLink to="/settings/my-nfts" className="settings-page__link">
+        My NFTs
+        <Icon name="chevron-right" />
+      </NavLink>
+      <NavLink to="/settings/my-collections" className="settings-page__link">
+        My Collections
+        <Icon name="chevron-right" />
+      </NavLink>
+      <NavLink to="/settings/password" className="settings-page__link">
+        Password
+        <Icon name="chevron-right" />
+      </NavLink>
+    </div>
   </div>
 );

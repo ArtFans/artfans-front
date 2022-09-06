@@ -16,7 +16,11 @@ export const Avatar = (
   }: any
 ) => {
   const containerClass = cx('avatar', `avatar--${size}`, className);
-  const avatarClass = cx('avatar__user', `avatar__user--${size}`);
+  const avatarClass = cx(
+    'avatar__user',
+    `avatar__user--${size}`,
+    { 'avatar__user--bg': !url }
+  );
 
   const initials = useMemo(() => {
     if (name) {

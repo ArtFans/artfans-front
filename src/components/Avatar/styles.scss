@@ -12,11 +12,14 @@
     border-radius: 50%;
     font-weight: $font-weight-xl;
     text-transform: uppercase;
-    background: $color-sami-black;
     color: $color-white;
     position: relative;
     overflow: hidden;
     user-select: none;
+
+    &--bg {
+      background: $color-sami-black;
+    }
 
     &--sm {
       width: 30px;

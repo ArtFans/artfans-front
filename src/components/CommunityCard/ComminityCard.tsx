@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import cx from 'classnames';
 import { Link } from 'react-router-dom';
 
+import formatNumber from 'src/helpers/formatNumber';
+
 import Icon from '../Icon';
 import Avatar from '../Avatar';
 import ArtButton from '../ArtButton';
@@ -17,7 +19,8 @@ export const CommunityCard = (
     isFollowing = false,
     collections = 0,
     nfts = 0,
-    followers = 0
+    followers = 0,
+    avatarUrl,
   }:any
 ) => {
   const [isLoading, setLoading] = useState(false);
@@ -37,6 +40,7 @@ export const CommunityCard = (
     <div className="community-card">
       <div className="community-card__body">
         <Avatar
+          url={avatarUrl}
           id={id}
           name={name}
           size="xxl"
@@ -50,7 +54,7 @@ export const CommunityCard = (
         )}
         {!!followers && (
           <div className="community-card__followers">
-            {followers} followers
+            {formatNumber(followers)} followers
           </div>
         )}
       </div>
