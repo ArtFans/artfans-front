@@ -11,7 +11,6 @@ import './styles.scss';
 export const ArtCard = (props: any) => {
   const {
     _id,
-    total_likes,
     owner_id,
     isTiny = false,
     metadata,
@@ -51,7 +50,7 @@ export const ArtCard = (props: any) => {
           issuedAt={issuedAt}
           name={name}
         >
-          <UserCardActions artId={_id} count={total_likes} />
+          <UserCardActions artId={_id} />
         </UserCard>
       )}
     </div>

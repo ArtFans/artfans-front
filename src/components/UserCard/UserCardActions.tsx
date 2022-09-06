@@ -14,21 +14,24 @@ import NearService from 'src/services/NearService';
 import { UserContext } from 'src/providers/UserProvider';
 
 const actionsTypes: any = {
-  like: 'heart',
-  upvote: 'plus'
-};
+  like: {
+    icon: 'heart',
+    get: 'get_post_likes_info',
+    like: 'like_post',
+    unlike: 'unlike_post'
+  },
+  upvote: {
+    icon: 'plus',
+    get: 'get_message_likes_info',
+    like: 'like_message',
+    unlike: 'unlike_message'
+  }
+}
 
-export const UserCardActions = (
-  {
-    artId,
-    messageId,
-    type = 'like',
-    count = 0
-  }: any
-) => {
+export const UserCardActions = ({ artId, messageId, type = 'like' }: any) => {
   const [isLiked, setLiked] = useState(false);
   const [isLoading, setLoading] = useState(false);
-  const [likesCount, setLikes] = useState(count);
+  const [likesCount, setLikes] = useState(0);
 
   const { user: { id } } = useContext<any>(UserContext);
 
@@ -39,32 +42,15 @@ export const UserCardActions = (
 
   const fetchLikes = useCallback(async () => {
     try {
-      let liked = false;
-      if (type === 'like') {
-        const [userId] = await NearService.contract.get_post_likes({
-          post_id: artId, from_index: '0', limit: '100'
+      const { likes_count, is_liked } = await NearService
+        .contract[actionsTypes[type].get]({
+          post_id: artId,
+          account_id: id,
+          msg_id: messageId
         });
 
-        liked = userId === id;
-      }
-
-      if (type === 'upvote') {
-        const [userId] = await NearService.contract.get_message_likes({
-          msg_id :{
-            post_id: artId, msg_idx: messageId
-          },
-          from_index: '0',
-          limit: '100'
-        });
-
-        liked = userId === id;
-      }
-
-      setLiked(liked);
-
-      if (liked) {
-        setLikes((state: any) => state + 1);
-      }
+      setLikes(Number(likes_count));
+      setLiked(is_liked);
     } catch (error) {
       console.log(error);
     }
@@ -74,19 +60,16 @@ export const UserCardActions = (
     if (!isLoading) {
       setLoading(true);
       try {
-        if (type === 'like') {
-          await NearService.contract.like_post({ post_id: artId });
-        } else {
-          await NearService.contract.like_message({
-            msg_id: {
-              post_id: artId, msg_idx: messageId
-            }
-          });
-        }
+        const likeData = {
+          post_id: artId,
+          msg_id: { post_id: artId, msg_idx: messageId }
+        };
 
         if (!isLiked) {
+          await NearService.contract[actionsTypes[type].like](likeData);
           setLikes((state: number) => state + 1);
         } else {
+          await NearService.contract[actionsTypes[type].unlike](likeData);
           setLikes((state: number) => state - 1);
         }
 
@@ -105,7 +88,7 @@ export const UserCardActions = (
 
   return (
     <button className={likesClass} onClick={onClick}>
-      {isLoading ? <Loader isBig={false} /> : <Icon name={actionsTypes[type]} />}
+      {isLoading ? <Loader isBig={false} /> : <Icon name={actionsTypes[type].icon} />}
       {!!likesCount && <span className="user-card__amount">{likesCount}</span>}
     </button>
   );

@@ -1,10 +1,11 @@
 import * as nearAPI from 'near-api-js';
 
+// arts_artfans.near
 // lepota.near
 // guest-book.testnet
 // getprofile.near
 // sur1.testnet
-const CONTRACT_NAME = process.env.CONTRACT_NAME || 'lepota.near';
+const CONTRACT_NAME = process.env.CONTRACT_NAME || 'arts_artfans.near';
 
 class NearService {
   near: any;
@@ -63,6 +64,8 @@ class NearService {
             'get_account_last_likes',
             'get_account_friends',
             'get_current_settings',
+            'get_post_likes_info',
+            'get_message_likes_info'
           ],
           changeMethods: [
             'add_message_to_post',
@@ -73,7 +76,8 @@ class NearService {
             'unlike_post',
             'add_friend',
             'update_profile',
-            'update_settings'
+            'update_settings',
+            'remove_friend'
           ],
           // @ts-ignore
           sender: this.walletConnection.getAccountId() as string,

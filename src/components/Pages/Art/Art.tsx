@@ -103,7 +103,7 @@ export const Art = () => {
             username={art.owner_id}
           >
             <UserCardComments count={count} />
-            <UserCardActions artId={art._id} count={art.total_likes} />
+            <UserCardActions artId={art._id} />
           </UserCard>
           {art.has_price && <ArtBuy price={art.price} />}
         </Container>
