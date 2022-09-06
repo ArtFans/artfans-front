@@ -20,13 +20,19 @@ import { ProfileStats } from './ProfileStats';
 import { ProfileTabs } from './ProfileTabs';
 
 import { UserContext } from 'src/providers/UserProvider';
+import { LoginContext } from 'src/providers/LoginProvider';
 
 export const ProfileThey = ({ id }: any) => {
   const [isPageLoading, setPageLoading] = useState(true);
   const [isFriendAdding, setFriendAdding] = useState(false);
   const [profile, setProfile] = useState<any>({});
 
-  const { addFriend, user: { friends } } = useContext<any>(UserContext);
+  const { setLoginStarted } = useContext<any>(LoginContext);
+  const {
+    addFriend,
+    isLoggedIn,
+    user: { friends },
+  } = useContext<any>(UserContext);
 
   const isFriend = useMemo(() => (
     friends.some((item: any) => item === id)
@@ -60,6 +66,7 @@ export const ProfileThey = ({ id }: any) => {
   }, [id]);
 
   const onFollow = useCallback(async () => {
+    if (!isLoggedIn) return setLoginStarted(true);
     setFriendAdding(true);
     try {
       if (!isFriend) {
@@ -74,7 +81,7 @@ export const ProfileThey = ({ id }: any) => {
     } finally {
       setFriendAdding(false);
     }
-  }, [id, addFriend, isFriend]);
+  }, [id, addFriend, isFriend, isLoggedIn, setLoginStarted]);
 
   useEffect(() => {
     fetchUser();
