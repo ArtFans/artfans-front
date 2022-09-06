@@ -9,6 +9,10 @@
     background-size: cover;
     background-position: center;
     position: relative;
+
+    @media screen and #{$media-xxs} {
+      display: none;
+    }
   }
 
   &__banner-edit {
@@ -20,11 +24,19 @@
   &__user, &__header, &__content {
     display: flex;
     width: 100%;
+
+    @media screen and #{$media-xxs} {
+      flex-direction: column;
+    }
   }
 
   &__about, &__avatar {
     max-width: $profile-social-width;
     width: 100%;
+
+    @media screen and #{$media-xxs} {
+      max-width: 100%;
+    }
   }
 
   &__avatar {
@@ -39,6 +51,10 @@
     bottom: 0;
     width: 100%;
     max-height: initial;
+
+    @media screen and #{$media-xxs} {
+      position: static;
+    }
   }
 
   &__header {
@@ -50,6 +66,12 @@
     display: flex;
     align-items: center;
     padding: 0 $gutter-md;
+
+    @media screen and #{$media-xxs} {
+      padding: $gutter-sm;
+      flex-direction: column;
+      border-bottom: $border-light-gray;
+    }
   }
 
   &__name {
@@ -61,6 +83,10 @@
         size: $font-size-xxl;
         weight: $font-weight-xl;
       };
+
+      @media screen and #{$media-xxs} {
+        margin-right: 0;
+      }
     }
   }
 
@@ -83,6 +109,12 @@
 
     &--following {
       color: $color-gray;
+    }
+
+    @media screen and #{$media-xxs} {
+      min-width: auto;
+      border-left: 0;
+      margin-left: initial;
     }
   }
 
@@ -124,6 +156,10 @@
   &__tabs {
     width: 100%;
     border-left: $border-light-gray;
+
+    @media screen and #{$media-xxs} {
+      border-left: 0;
+    }
   }
 
   &__art {
@@ -133,6 +169,10 @@
 
     @media screen and #{$media-lg} {
       max-width: calc(100% / 2);
+    }
+
+    @media screen and #{$media-xxs} {
+      max-width: 100%;
     }
   }
 }

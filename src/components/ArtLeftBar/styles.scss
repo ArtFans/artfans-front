@@ -11,6 +11,10 @@
   width: $leftbar-width;
   height: 100%;
 
+  @media screen and #{$media-xxs} {
+    width: $leftbar-width-mobile;
+  }
+
   &__link {
     display: block;
     padding: $gutter-sm $gutter-md;
@@ -18,10 +22,18 @@
     cursor: pointer;
     color: $color-gray;
 
+    @media screen and #{$media-xxs} {
+      padding: $gutter-sm;
+    }
+
     &--arrow {
       color: $color-rose;
       padding: $gutter-md;
       padding-bottom: $gutter-lg;
+
+      @media screen and #{$media-xxs} {
+        padding: $gutter-lg $gutter-sm $gutter-md;
+      }
     }
 
     &:hover, &.active {
