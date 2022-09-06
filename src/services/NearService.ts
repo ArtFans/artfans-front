@@ -143,6 +143,27 @@ class NearService {
         throw Error(`Unconfigured environment '${env}'. Can be configured in src/config.js.`);
     }
   }
+
+  async getBalance(account_id: string) {
+    try {
+      const data = await this.walletConnection.account().signAndSendTransaction({
+        receiverId: 'tkn_artfans.near',
+        actions: [
+          nearAPI.transactions.functionCall(
+            'get_balance',
+            Buffer.from(
+              JSON.stringify({ account_id })
+            ),
+            '30000000000000', // 30 TGas
+            '0' // 3.5 NEAR
+          )
+        ],
+      });
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }
 
 export default new NearService();

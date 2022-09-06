@@ -11,6 +11,7 @@ const UserProvider = ({ children }: { children: ReactNode }) => {
     id: window.nearAddress,
     arts: [],
     profile: JSON.parse(localStorage.getItem('profile') || '{}'),
+    profileFilled: localStorage.getItem('profileFilled') === window.nearAddress,
     friends: [],
     artsCount: 0
   });
@@ -22,7 +23,7 @@ const UserProvider = ({ children }: { children: ReactNode }) => {
     setUser((state: any) => ({
       ...state,
       arts: data || [],
-      artsCount: count,
+      artsCount: count || 0,
     }));
   };
 
@@ -92,6 +93,8 @@ const UserProvider = ({ children }: { children: ReactNode }) => {
       });
 
       setUser((state: any) => ({ ...state, profile }));
+      localStorage.setItem('profile', JSON.stringify(profile));
+      localStorage.setItem('profileFilled', window.nearAddress);
       setLoggedIn(true);
     } catch (error) {
       console.log(error);

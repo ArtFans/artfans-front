@@ -12,6 +12,7 @@ import Loader from '../Loader';
 import NearService from 'src/services/NearService';
 
 import { UserContext } from 'src/providers/UserProvider';
+import { LoginContext } from 'src/providers/LoginProvider';
 
 const actionsTypes: any = {
   like: {
@@ -28,12 +29,13 @@ const actionsTypes: any = {
   }
 }
 
-export const UserCardActions = ({ artId, messageId, type = 'like' }: any) => {
+export const UserCardActions = ({ artId, messageId, type = 'like', isFake = false }: any) => {
   const [isLiked, setLiked] = useState(false);
   const [isLoading, setLoading] = useState(false);
   const [likesCount, setLikes] = useState(0);
 
-  const { user: { id } } = useContext<any>(UserContext);
+  const { user: { id }, isLoggedIn } = useContext<any>(UserContext);
+  const { setLoginStarted } = useContext<any>(LoginContext);
 
   const likesClass = cx(
     'user-card__social',
@@ -57,6 +59,7 @@ export const UserCardActions = ({ artId, messageId, type = 'like' }: any) => {
   }, [artId, id, type, messageId]);
 
   const onClick = useCallback(async () => {
+    if (!isLoggedIn) return setLoginStarted(true);
     if (!isLoading) {
       setLoading(true);
       try {
@@ -80,10 +83,10 @@ export const UserCardActions = ({ artId, messageId, type = 'like' }: any) => {
         setLoading(false);
       }
     }
-  }, [type, artId, messageId, isLiked, isLoading]);
+  }, [type, artId, messageId, isLiked, isLoading, isLoggedIn, setLoginStarted]);
 
   useEffect(() => {
-    fetchLikes();
+    if (!isFake) fetchLikes();
   }, []);
 
   return (

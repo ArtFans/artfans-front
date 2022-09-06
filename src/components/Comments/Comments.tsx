@@ -7,6 +7,7 @@ import Container from '../Container';
 import { CommentsItem } from './CommentsItem';
 
 import { UserContext } from 'src/providers/UserProvider';
+import { LoginContext } from 'src/providers/LoginProvider';
 import { CommentsContext } from 'src/providers/CommentsProvider';
 
 import './styles.scss';
@@ -14,10 +15,12 @@ import './styles.scss';
 export const Comments = ({ artId }: any) => {
   const textRef = useRef<any>(null);
 
-  const { user } = useContext<any>(UserContext);
+  const { user, isLoggedIn } = useContext<any>(UserContext);
+  const { setLoginStarted } = useContext<any>(LoginContext);
   const { loading, comments, addComment } = useContext<any>(CommentsContext);
 
   const onSend = useCallback(async () => {
+    if (!isLoggedIn) return setLoginStarted(true);
     if (textRef?.current && textRef.current?.value.length) {
       const text = textRef.current?.value;
       await addComment({ sender: user.id, text });
@@ -25,7 +28,7 @@ export const Comments = ({ artId }: any) => {
       textRef.current.value = '';
       textRef.current.style.height = '16px';
     }
-  }, [addComment, user.id]);
+  }, [addComment, user.id, isLoggedIn, setLoginStarted]);
 
   const handleKeyDown = useCallback((event: any) => {
     if (event.ctrlKey && event.keyCode === 13) {

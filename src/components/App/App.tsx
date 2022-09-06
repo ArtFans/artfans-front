@@ -2,6 +2,7 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 
 import UserProvider from 'src/providers/UserProvider';
+import LoginProvider from 'src/providers/LoginProvider';
 import Header from '../Header';
 import ArtLeftBar from '../ArtLeftBar';
 import ArtRightBar from '../ArtRightBar';
@@ -15,12 +16,14 @@ export const App = () => {
 
   return (
     <UserProvider>
-      <Header />
-      <div className="content">
-        <ArtLeftBar />
-        <Outlet />
-        <ArtRightBar />
-      </div>
+      <LoginProvider>
+        <Header />
+        <div className="content">
+          <ArtLeftBar />
+          <Outlet />
+          <ArtRightBar />
+        </div>
+      </LoginProvider>
     </UserProvider>
   );
 };

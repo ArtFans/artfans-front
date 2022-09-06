@@ -5,21 +5,17 @@ import Login from '../Login';
 import ArtModal from '../ArtModal';
 import ArtButton from '../ArtButton';
 import HeaderMenu from '../HeaderMenu';
+
 import { UserContext } from 'src/providers/UserProvider';
+import { LoginContext } from 'src/providers/LoginProvider';
 
 import './styles.scss';
 
 export const Header = () => {
   const [searchParams] = useSearchParams();
-  const [isLoginStarted, setLoginStarted] = useState(false);
 
   const { setLoggedIn, isLoggedIn } = useContext<any>(UserContext);
-
-  useEffect(() => {
-    if (searchParams.get('login') && !isLoggedIn) {
-      setLoginStarted(true);
-    }
-  }, [searchParams, isLoggedIn]);
+  const { isLoginStarted, setLoginStarted } = useContext<any>(LoginContext);
 
   return (
     <header className="header">

@@ -14,7 +14,8 @@ export const ArtCard = (props: any) => {
     owner_id,
     isTiny = false,
     metadata,
-    name
+    name,
+    isFake = false
   } = props;
 
   const { issuedAt, media, isVideo } = useArtMetadata(metadata);
@@ -50,7 +51,7 @@ export const ArtCard = (props: any) => {
           issuedAt={issuedAt}
           name={name}
         >
-          <UserCardActions artId={_id} />
+          <UserCardActions artId={_id} isFake={isFake} />
         </UserCard>
       )}
     </div>

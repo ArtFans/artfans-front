@@ -78,7 +78,7 @@ export const Explore = () => {
           <Grid>
             {[...Array(10)].map(((item, index) => (
               <GridCell key={index}>
-                <ArtCard {...fakeArt()} />
+                <ArtCard {...fakeArt()} isFake={true} />
               </GridCell>
             )))}
           </Grid>
@@ -90,7 +90,7 @@ export const Explore = () => {
           <Grid>
             {[...Array(10)].map(((item, index) => (
               <GridCell key={index}>
-                <ArtCard {...fakeArt()} />
+                <ArtCard {...fakeArt()} isFake={true} />
               </GridCell>
             )))}
           </Grid>
@@ -102,7 +102,7 @@ export const Explore = () => {
           <Grid>
             {[...Array(10)].map(((item, index) => (
               <GridCell key={index}>
-                <ArtCard {...fakeArt()} />
+                <ArtCard {...fakeArt()} isFake={true} />
               </GridCell>
             )))}
           </Grid>
