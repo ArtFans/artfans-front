@@ -1,4 +1,5 @@
 import * as nearAPI from 'near-api-js';
+import BigNumber from 'bignumber.js';
 
 // arts_artfans.near
 // lepota.near
@@ -152,6 +153,28 @@ class NearService {
         };
       default:
         throw Error(`Unconfigured environment '${env}'. Can be configured in src/config.js.`);
+    }
+  }
+
+  async buyArtTokes() {
+    try {
+      const res = await this.walletConnection.account().signAndSendTransaction({
+        receiverId: 'market_artfans.near',
+        actions: [
+          nearAPI.transactions.functionCall(
+            'buy_activity_ft',
+            Buffer.from(JSON.stringify({
+              token_series_id: '1',
+              receiver_id: window.nearAddress
+            })),
+            '30000000000000', // 30 TGas
+            '100000000000000000000000' // 0.1 NEAR
+          )
+        ],
+      });
+      console.log(res);
+    } catch (error) {
+      console.log(error);
     }
   }
 }

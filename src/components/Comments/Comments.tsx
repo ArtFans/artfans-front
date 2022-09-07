@@ -67,8 +67,16 @@ export const Comments = ({ artId }: any) => {
     <div className="comments">
       {replyTo.account && (
         <div className="comments__reply">
-          <div>Reply to: <span>@{replyTo.account}</span></div>
-          <Icon name="x" onClick={() => setReplyTo({})} />
+          <Icon name="corner-up-left" />
+          <div className="comments__reply-to">
+            <span>@{replyTo.account}</span>
+            {replyTo.message}
+          </div>
+          <Icon
+            name="x"
+            className="comments__reply-cancel"
+            onClick={() => setReplyTo({})}
+          />
         </div>
       )}
       <div className="comments__header">

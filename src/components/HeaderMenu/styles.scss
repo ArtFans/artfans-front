@@ -60,6 +60,10 @@
     &--md {
       font-size: $font-size-xl;
     }
+
+    & span {
+      font-size: $font-size-sm;
+    }
   }
 
   &__stat {

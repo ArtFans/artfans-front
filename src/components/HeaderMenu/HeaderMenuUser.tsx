@@ -47,7 +47,7 @@ export const HeaderMenuUser = () => {
               My Wallet
             </div>
             <div className="header-menu__user-balance header-menu__user-balance--md">
-              {formatNumber(user.balance)} AAF
+              {formatNumber(user.balance, true)} <span>AAF</span>
             </div>
           </div>
           <ArtButton icon="plus" className="header-menu__user-add" />

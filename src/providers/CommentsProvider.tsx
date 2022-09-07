@@ -43,7 +43,7 @@ const CommentsProvider = () => {
               post_id: id,
               msg_idx: parent
             },
-            text
+            text: ipfsHash || text
           });
         } else {
           await NearService.contract.add_message_to_post({

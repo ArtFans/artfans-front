@@ -1,10 +1,12 @@
 import BigNumber from 'bignumber.js';
 
-const formatNumber = (num: any): string => {
+const formatNumber = (num: any, toFormat = false): string => {
   let value = num.toString();
 
   if (typeof num === 'string') {
-    value = new BigNumber(value).shiftedBy(-24).toFormat();
+    value = new BigNumber(value)
+      .shiftedBy(-24)
+      .toFormat(toFormat ? BigNumber.ROUND_FLOOR : undefined);
   }
 
   if (typeof num === 'object') {

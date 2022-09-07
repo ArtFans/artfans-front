@@ -50,7 +50,7 @@ const CommentsItem = (
         >
           {!parent_idx && (
             <Icon
-              onClick={() => onReply({ account, msg_idx })}
+              onClick={() => onReply({ account, msg_idx, message })}
               name="corner-up-left"
               className="comments__item-reply"
             />

@@ -4,18 +4,27 @@
   &__reply {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     padding: $gutter-xs $gutter-md;
     border-bottom: $border-light-gray;
     font: {
       size: $font-size-sm;
-      weight: $font-weight-xl;
     };
 
     & span {
+      display: block;
       color: $color-gray;
       font-weight: $font-weight-sm;
     }
+  }
+
+  &__reply-to {
+    margin-left: $gutter-xs;
+    white-space: nowrap;
+    padding-right: $gutter-md;
+  }
+
+  &__reply-cancel {
+    margin-left: auto;
   }
 
   &__header {

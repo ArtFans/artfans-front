@@ -119,12 +119,17 @@ const UserProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
+  const buy = async () => {
+    await NearService.buyArtTokes();
+  }
+
   useEffect(() => {
     if (window.nearAddress) {
       fetchProfile();
       fetchMyArts();
       fetchFriends();
       fetchBalance();
+      // buy();
     }
     fetchCurrency();
   }, []);
