@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import formatNumber from 'src/helpers/formatNumber';
 
+import TBA from '../TBA';
 import Stat from '../Stat';
 import Avatar from '../Avatar';
 import Dropdown from '../Dropdown';
@@ -46,12 +47,13 @@ export const HeaderMenuUser = () => {
               My Wallet
             </div>
             <div className="header-menu__user-balance header-menu__user-balance--md">
-              $ {formatNumber(23122033)}
+              {formatNumber(user.balance)} AAF
             </div>
           </div>
           <ArtButton icon="plus" className="header-menu__user-add" />
         </div>
         <div className="header-menu__user-block">
+          <TBA />
           <div className="header-menu__user-wallet">
             <div className="header-menu__user-title">
               Transaction Fees

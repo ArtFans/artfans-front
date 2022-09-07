@@ -13,7 +13,8 @@ const UserProvider = ({ children }: { children: ReactNode }) => {
     profile: JSON.parse(localStorage.getItem('profile') || '{}'),
     profileFilled: localStorage.getItem('profileFilled') === window.nearAddress,
     friends: [],
-    artsCount: 0
+    artsCount: 0,
+    balance: '0'
   });
   const [isLoggedIn, setLoggedIn] = useState(!!window.nearAddress.length);
   const [currency, setCurrency] = useState(0);
@@ -106,11 +107,24 @@ const UserProvider = ({ children }: { children: ReactNode }) => {
     setCurrency(current_price);
   };
 
+  const fetchBalance = async () => {
+    try {
+      const balance = await NearService.balance.ft_balance_of({
+        account_id: window.nearAddress
+      });
+
+      setUser((state: any) => ({ ...state, balance }));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     if (window.nearAddress) {
       fetchProfile();
       fetchMyArts();
       fetchFriends();
+      fetchBalance();
     }
     fetchCurrency();
   }, []);

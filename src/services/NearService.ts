@@ -14,6 +14,7 @@ class NearService {
   keyStore = new nearAPI.keyStores.BrowserLocalStorageKeyStore();
   currentUser: any;
   contract: any;
+  balance: any;
 
   async init() {
     try {
@@ -28,7 +29,6 @@ class NearService {
 
       await this.getCurrentUser();
       await this.initContract();
-      console.log(this.contract);
     } catch (error) {
       console.log(error);
     }
@@ -79,6 +79,17 @@ class NearService {
             'update_settings',
             'remove_friend'
           ],
+          // @ts-ignore
+          sender: this.walletConnection.getAccountId() as string,
+        }
+      );
+
+      this.balance = await new nearAPI.Contract(
+        this.walletConnection.account(),
+        'tkn_artfans.near',
+        {
+          viewMethods: ['ft_balance_of'],
+          changeMethods: [],
           // @ts-ignore
           sender: this.walletConnection.getAccountId() as string,
         }
@@ -141,27 +152,6 @@ class NearService {
         };
       default:
         throw Error(`Unconfigured environment '${env}'. Can be configured in src/config.js.`);
-    }
-  }
-
-  async getBalance(account_id: string) {
-    try {
-      const data = await this.walletConnection.account().signAndSendTransaction({
-        receiverId: 'tkn_artfans.near',
-        actions: [
-          nearAPI.transactions.functionCall(
-            'get_balance',
-            Buffer.from(
-              JSON.stringify({ account_id })
-            ),
-            '30000000000000', // 30 TGas
-            '0' // 3.5 NEAR
-          )
-        ],
-      });
-      console.log(data);
-    } catch (error) {
-      console.log(error);
     }
   }
 }

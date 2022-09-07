@@ -32,6 +32,7 @@
     display: flex;
     justify-content: space-between;
     border-bottom: $border-light-gray;
+    position: relative;
   }
 
   &__user-wallet {
