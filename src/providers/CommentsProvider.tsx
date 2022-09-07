@@ -22,7 +22,7 @@ const CommentsProvider = () => {
       const result = await NearService.contract.get_post_messages({
         post_id: id,
         from_index: comments.length.toString(),
-        limit: '100'
+        limit: '500'
       });
 
       setComments((state: any) => [...state, ...result]);
@@ -31,25 +31,36 @@ const CommentsProvider = () => {
     }
   }, [id, comments.length]);
 
-  const addComment = useCallback(async ({ sender, text }: any) => {
+  const addComment = useCallback(async ({ sender, text, parent }: any) => {
     if (!loading) {
       setLoading(true);
       try {
         const ipfsHash = await ApiService.saveToIpfs(text);
 
-        await NearService.contract.add_message_to_post({
-          post_id: id,
-          text: ipfsHash || text
-        });
+        if (parent) {
+          await NearService.contract.add_message_to_message({
+            parent_msg_id: {
+              post_id: id,
+              msg_idx: parent
+            },
+            text
+          });
+        } else {
+          await NearService.contract.add_message_to_post({
+            post_id: id,
+            text: ipfsHash || text
+          });
+        }
 
         setComments((state: any) => [
           ...state,
           {
-            account: sender,
             text,
+            account: sender,
             timestamp: new Date().getTime(),
-            msg_idx: state.length,
-            likes_count: '0'
+            msg_idx: state.length.toString(),
+            likes_count: '0',
+            parent_idx: parent,
           }
         ]);
       } catch (error) {

@@ -1,4 +1,4 @@
-import React, { useRef, useContext, useCallback } from 'react';
+import React, { useRef, useContext, useCallback, useState } from 'react';
 import TextareaAutosize from 'react-textarea-autosize';
 
 import Icon from '../Icon';
@@ -13,22 +13,44 @@ import { CommentsContext } from 'src/providers/CommentsProvider';
 import './styles.scss';
 
 export const Comments = ({ artId }: any) => {
+  const [replyTo, setReplyTo] = useState<any>({});
   const textRef = useRef<any>(null);
 
   const { user, isLoggedIn } = useContext<any>(UserContext);
   const { setLoginStarted } = useContext<any>(LoginContext);
-  const { loading, comments, addComment } = useContext<any>(CommentsContext);
+  const {
+    loading,
+    comments,
+    addComment
+  } = useContext<any>(CommentsContext);
 
-  const onSend = useCallback(async () => {
-    if (!isLoggedIn) return setLoginStarted(true);
-    if (textRef?.current && textRef.current?.value.length) {
-      const text = textRef.current?.value;
-      await addComment({ sender: user.id, text });
+  const onSend = useCallback(
+    async () => {
+      if (!isLoggedIn) return setLoginStarted(true);
+      if (textRef?.current && textRef.current?.value.length) {
+        const text = textRef.current?.value;
 
-      textRef.current.value = '';
-      textRef.current.style.height = '16px';
-    }
-  }, [addComment, user.id, isLoggedIn, setLoginStarted]);
+        await addComment({
+          sender: user.id,
+          text,
+          parent: replyTo.msg_idx
+        });
+
+        textRef.current.value = '';
+        textRef.current.style.height = '20px';
+        if (replyTo.msg_idx) {
+          setReplyTo({});
+        }
+      }
+    },
+    [
+      addComment,
+      user.id,
+      isLoggedIn,
+      setLoginStarted,
+      replyTo.msg_idx
+    ]
+  );
 
   const handleKeyDown = useCallback((event: any) => {
     if (event.ctrlKey && event.keyCode === 13) {
@@ -36,8 +58,19 @@ export const Comments = ({ artId }: any) => {
     }
   }, [onSend]);
 
+  const onReply = (data: any) => {
+    setReplyTo(data);
+    textRef?.current.focus();
+  };
+
   return (
     <div className="comments">
+      {replyTo.account && (
+        <div className="comments__reply">
+          <div>Reply to: <span>@{replyTo.account}</span></div>
+          <Icon name="x" onClick={() => setReplyTo({})} />
+        </div>
+      )}
       <div className="comments__header">
         <TextareaAutosize
           disabled={loading}
@@ -52,13 +85,23 @@ export const Comments = ({ artId }: any) => {
         </button>
       </div>
       <Container className="comments__list">
-        {comments.map((comment: any) => (
-          <CommentsItem
-            key={comment.msg_idx}
-            artId={artId}
-            {...comment}
-          />
-        ))}
+        {
+          comments
+            .filter((comment: any) => !comment.parent_idx)
+            .map((comment: any) => ({
+              ...comment,
+              replies: comments
+                .filter((reply: any) => reply.parent_idx === comment.msg_idx)
+            }))
+            .map((comment: any) => (
+              <CommentsItem
+                onReply={onReply}
+                key={comment.msg_idx}
+                artId={artId}
+                {...comment}
+              />
+            ))
+        }
       </Container>
     </div>
   );

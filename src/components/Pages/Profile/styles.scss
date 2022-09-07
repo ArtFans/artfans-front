@@ -100,6 +100,12 @@
       size: $font-size-md;
       weight: $font-weight-md;
     }
+
+    @media screen and #{$media-xxs} {
+      text-overflow: ellipsis;
+      width: 100%;
+      overflow: hidden;
+    }
   }
 
   &__header-button {
