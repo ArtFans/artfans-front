@@ -7,6 +7,7 @@ import React, {
 } from 'react';
 import cx from 'classnames';
 
+import ApiService from 'src/services/ApiService';
 import NearService from 'src/services/NearService';
 
 import ArtButton from 'src/components/ArtButton';
@@ -47,11 +48,13 @@ export const ProfileThey = ({ id }: any) => {
       });
 
       if (result) {
-        const { image, json_metadata } = result;
-        const profileData = {
-          image,
-          ...JSON.parse(json_metadata)
-        };
+        const { image_url, json_metadata } = result;
+
+        const profileData = JSON.parse(json_metadata);
+
+        if (image_url) {
+          profileData.image = await ApiService.getFromIpfs(image_url);
+        }
 
         setProfile((state: any) => ({
           ...state,
