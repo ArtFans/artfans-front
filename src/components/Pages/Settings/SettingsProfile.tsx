@@ -34,7 +34,7 @@ export const SettingsProfile = () => {
       const [file] = target.files;
       const base64 = await toBase64(file);
 
-      setProfile((state: any) => ({ ...state, image: base64 }));
+      setProfile((state: any) => ({ ...state, image_url: base64 }));
     } catch (error) {
       console.log(error);
     }

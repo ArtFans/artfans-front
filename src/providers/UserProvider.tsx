@@ -35,11 +35,13 @@ const UserProvider = ({ children }: { children: ReactNode }) => {
       });
 
       if (profile) {
-        const { image, json_metadata } = profile;
-        const profileData = {
-          image,
-          ...JSON.parse(json_metadata)
-        };
+        const { image_url, json_metadata } = profile;
+
+        const profileData = JSON.parse(json_metadata);
+
+        if (image_url) {
+          profileData.image = await ApiService.getFromIpfs(image_url);
+        }
 
         setUser((state: any) => ({
           ...state,
@@ -90,7 +92,7 @@ const UserProvider = ({ children }: { children: ReactNode }) => {
       await NearService.contract.update_profile({
         profile: {
           json_metadata,
-          image_url: `https://ipfs.io/ipfs/${ipfsHash}`
+          image_url: ipfsHash
         },
         accountId: window.nearAddress
       });
