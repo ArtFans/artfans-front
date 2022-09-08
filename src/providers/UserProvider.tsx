@@ -88,8 +88,10 @@ const UserProvider = ({ children }: { children: ReactNode }) => {
       }
 
       await NearService.contract.update_profile({
-        image_url: `https://ipfs.io/ipfs/${ipfsHash}`,
-        profile: { json_metadata },
+        profile: {
+          json_metadata,
+          image_url: `https://ipfs.io/ipfs/${ipfsHash}`
+        },
         accountId: window.nearAddress
       });
 

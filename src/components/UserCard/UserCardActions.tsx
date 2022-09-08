@@ -48,7 +48,10 @@ export const UserCardActions = ({ artId, messageId, type = 'like', isFake = fals
         .contract[actionsTypes[type].get]({
           post_id: artId,
           account_id: id,
-          msg_id: messageId
+          msg_id: {
+            post_id: artId,
+            msg_idx: messageId
+          }
         });
 
       setLikes(Number(likes_count));
