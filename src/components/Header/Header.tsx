@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useContext } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 
 import Login from '../Login';
@@ -24,8 +24,8 @@ export const Header = () => {
           ARTFANS
         </Link>
         <span className="header__tagline">
-            Social network for NFT lovers
-          </span>
+          Social network for NFT lovers
+        </span>
       </div>
       {isLoggedIn ?
         <HeaderMenu /> :

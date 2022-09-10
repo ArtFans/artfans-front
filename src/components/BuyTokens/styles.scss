@@ -1,0 +1,31 @@
+@import 'src/assets/scss/variables';
+
+.buy-tokens {
+  background: $color-white;
+  padding-top: $gutter-md;
+  height: fit-content;
+  align-self: center;
+  font-weight: $font-weight-xl;
+  font-size: $font-size-xl;
+
+  &__title {
+    padding: 0 $gutter-md;
+  }
+
+  &__currency {
+    padding: $gutter-md $gutter-md 0;
+    text-align: center;
+  }
+
+  &__input {
+    max-width: 100px;
+    text-align: center;
+    font-size: $font-size-xl;
+    font-weight: $font-weight-xl;
+  }
+
+  &__button {
+    width: 100%;
+    border-top: $border-light-gray;
+  }
+}

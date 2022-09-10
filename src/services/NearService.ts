@@ -156,7 +156,7 @@ class NearService {
     }
   }
 
-  async buyArtTokes() {
+  async buyArtTokes(amount: string) {
     try {
       const res = await this.walletConnection.account().signAndSendTransaction({
         receiverId: 'market_artfans.near',
@@ -168,7 +168,7 @@ class NearService {
               receiver_id: window.nearAddress
             })),
             '30000000000000', // 30 TGas
-            '100000000000000000000000' // 0.1 NEAR
+            amount // 0.1 NEAR
           )
         ],
       });
