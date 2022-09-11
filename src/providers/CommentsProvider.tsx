@@ -2,12 +2,17 @@ import React, {
   createContext,
   useState,
   useEffect,
-  useCallback
+  useCallback,
+  useContext
 } from 'react';
 import { useParams, Outlet } from 'react-router-dom';
 
+import errorCatch from 'src/helpers/errorCatch';
+
 import NearService from '../services/NearService';
 import ApiService from '../services/ApiService';
+
+import { UserContext } from './UserProvider';
 
 export const CommentsContext = createContext({});
 
@@ -15,6 +20,8 @@ const CommentsProvider = () => {
   const [comments, setComments] = useState<any>([]);
   const [loading, setLoading] = useState(false);
   const { id } = useParams();
+
+  const { setBuyModal } = useContext<any>(UserContext);
 
   const fetchComments = useCallback(async () => {
     setComments([]);
@@ -64,7 +71,7 @@ const CommentsProvider = () => {
           }
         ]);
       } catch (error) {
-        console.log(error);
+        errorCatch(error, setBuyModal({ open: true, warning: 'insufficient funds' }));
       } finally {
         setLoading(false);
       }

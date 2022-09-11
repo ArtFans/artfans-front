@@ -1,8 +1,13 @@
 import React, { createContext, useEffect, useState } from 'react';
 import type { ReactNode } from 'react';
 
+import errorCatch from '../helpers/errorCatch';
+
 import ApiService from '../services/ApiService';
 import NearService from '../services/NearService';
+
+import ArtModal from '../components/ArtModal';
+import BuyTokens from '../components/BuyTokens';
 
 export const UserContext = createContext({});
 
@@ -18,6 +23,7 @@ const UserProvider = ({ children }: { children: ReactNode }) => {
   });
   const [isLoggedIn, setLoggedIn] = useState(!!window.nearAddress.length);
   const [currency, setCurrency] = useState(0);
+  const [modal, setBuyModal] = useState<any>({ open: false, warning: '' });
 
   const fetchMyArts = async () => {
     const { data, count } = await ApiService.getMyArts({ limit: 15 });
@@ -102,7 +108,7 @@ const UserProvider = ({ children }: { children: ReactNode }) => {
       localStorage.setItem('profileFilled', window.nearAddress);
       setLoggedIn(true);
     } catch (error) {
-      console.log(error);
+      errorCatch(error, setBuyModal({ open: true, warning: 'Infucient ballance' }));
     }
   };
 
@@ -141,10 +147,17 @@ const UserProvider = ({ children }: { children: ReactNode }) => {
         currency,
         setLoggedIn,
         addFriend,
-        updateProfile
+        updateProfile,
+        setBuyModal
       }}
     >
       {children}
+      <ArtModal
+        open={modal.open}
+        onClose={() => setBuyModal({})}
+      >
+        <BuyTokens warning={modal.warning} />
+      </ArtModal>
     </UserContext.Provider>
   );
 };

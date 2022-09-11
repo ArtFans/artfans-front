@@ -12,7 +12,7 @@ import Grid, { GridCell } from '../Grid';
 
 import './styles.scss';
 
-export const BuyTokens = () => {
+export const BuyTokens = ({ warning }: any) => {
   const [isLoading, setLoading] = useState(false);
   const [value, setValue] = useState<number>(100);
 
@@ -35,6 +35,11 @@ export const BuyTokens = () => {
 
   return (
     <div className="buy-tokens">
+      {warning && (
+        <ArtTitle className="buy-tokens__warning">
+          {warning}
+        </ArtTitle>
+      )}
       <ArtTitle className="buy-tokens__title">
         Buy ArtFans Action Tokens
       </ArtTitle>

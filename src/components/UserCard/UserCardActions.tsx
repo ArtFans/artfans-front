@@ -6,6 +6,8 @@ import React, {
 } from 'react';
 import cx from 'classnames';
 
+import errorCatch from 'src/helpers/errorCatch';
+
 import Icon from '../Icon';
 import Loader from '../Loader';
 
@@ -34,7 +36,7 @@ export const UserCardActions = ({ artId, messageId, type = 'like', isFake = fals
   const [isLoading, setLoading] = useState(false);
   const [likesCount, setLikes] = useState(0);
 
-  const { user: { id }, isLoggedIn } = useContext<any>(UserContext);
+  const { user: { id }, isLoggedIn, setBuyModal } = useContext<any>(UserContext);
   const { setLoginStarted } = useContext<any>(LoginContext);
 
   const likesClass = cx(
@@ -81,7 +83,7 @@ export const UserCardActions = ({ artId, messageId, type = 'like', isFake = fals
 
         setLiked(!isLiked);
       } catch (error) {
-        console.log(error);
+        errorCatch(error, setBuyModal({ open: true, warning: 'insufficient funds' }));
       } finally {
         setLoading(false);
       }

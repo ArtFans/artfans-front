@@ -8,6 +8,12 @@
   font-weight: $font-weight-xl;
   font-size: $font-size-xl;
 
+  &__warning {
+    color: $color-rose;
+    text-align: center;
+    margin-bottom: $gutter-xs;
+  }
+
   &__title {
     padding: 0 $gutter-md;
   }

@@ -8,18 +8,15 @@ import Stat from '../Stat';
 import Avatar from '../Avatar';
 import Dropdown from '../Dropdown';
 import ArtButton from '../ArtButton';
-import ArtModal from '../ArtModal';
-import BuyTokens from '../BuyTokens';
 import Grid, { GridCell } from '../Grid';
 
 import { UserContext } from 'src/providers/UserProvider';
 
 export const HeaderMenuUser = () => {
   const navigate = useNavigate();
-  const [showBuyModal, setByModal] = useState(false);
   const [dropdownVisible, setVisibility] = useState(false);
 
-  const { user } = useContext<any>(UserContext);
+  const { user, setBuyModal } = useContext<any>(UserContext);
 
   const onAvatarClick = (event: Event) => {
     event.preventDefault();
@@ -33,7 +30,7 @@ export const HeaderMenuUser = () => {
   };
 
   const onBuyClick = () => {
-    setByModal(true);
+    setBuyModal({ open: true });
     setVisibility(false);
   };
 
@@ -45,12 +42,6 @@ export const HeaderMenuUser = () => {
           name={user.profile.name || user.id}
           onClick={onAvatarClick}
         />
-        <ArtModal
-          open={showBuyModal}
-          onClose={() => setByModal(false)}
-        >
-          <BuyTokens />
-        </ArtModal>
         <Dropdown
           className="header-menu__user-dropdown"
           open={dropdownVisible}
