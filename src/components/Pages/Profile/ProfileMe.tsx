@@ -11,7 +11,7 @@ import { ProfileStats } from './ProfileStats';
 import { ProfileTabs } from './ProfileTabs';
 
 export const ProfileMe = ({ user, fetchMyArts }: any) => {
-  const { id, profile, artsCount, friends } = user;
+  const { id, profile, artsCount, friends, arts } = user;
 
   return (
     <div className="profile-page">
@@ -44,7 +44,7 @@ export const ProfileMe = ({ user, fetchMyArts }: any) => {
           />
           <ProfileStats nfts={artsCount} following={friends.length} />
         </Container>
-        <ProfileTabs id={id} fetchMyArts={fetchMyArts} />
+        <ProfileTabs id={id} predefinedArts={arts} fetchMyArts={fetchMyArts} />
       </div>
     </div>
   );

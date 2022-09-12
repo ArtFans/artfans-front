@@ -9,28 +9,28 @@ import Container from 'src/components/Container';
 import Grid, { GridCell } from 'src/components/Grid';
 import ArtInfiniteScroll from 'src/components/ArtInfiniteScroll';
 
-export const ProfileTabs = ({ id, fetchMyArts }: any) => {
+export const ProfileTabs = ({ id, predefinedArts, fetchMyArts }: any) => {
   const collections = [];
-  const [arts, setArts] = useState<any>([]);
+  const [arts, setArts] = useState<any>(predefinedArts);
 
   const fetchArts = useCallback(async () => {
-    let result: [] = [];
-
     if (fetchMyArts) {
-      result = await fetchMyArts();
+      await fetchMyArts();
     } else {
-      result = await ApiService.getFriendsArts({
+      const result = await ApiService.getFriendsArts({
         friends: [id],
         skip: arts.length
       });
-    }
 
-    setArts((state: any) => [...state, ...result]);
+      setArts((state: any) => [...state, ...result]);
+    }
   }, [id, arts, fetchMyArts]);
 
   useEffect(() => {
-    fetchArts();
-  }, []);
+    if (!predefinedArts) {
+      fetchArts();
+    }
+  }, [predefinedArts]);
 
   if (!arts.length && !collections.length) return null;
 

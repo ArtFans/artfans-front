@@ -33,8 +33,6 @@ const UserProvider = ({ children }: { children: ReactNode }) => {
       arts: data || [],
       artsCount: count || 0,
     }));
-
-    return data || [];
   }, [user.artsCount]);
 
   const fetchProfile = async () => {
