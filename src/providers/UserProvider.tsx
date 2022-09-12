@@ -108,7 +108,7 @@ const UserProvider = ({ children }: { children: ReactNode }) => {
       localStorage.setItem('profileFilled', window.nearAddress);
       setLoggedIn(true);
     } catch (error) {
-      errorCatch(error, setBuyModal({ open: true, warning: 'Infucient ballance' }));
+      errorCatch(error, setBuyModal({ open: true, warning: 'insufficient funds' }));
     }
   };
 
