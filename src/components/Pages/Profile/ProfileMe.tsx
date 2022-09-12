@@ -10,7 +10,7 @@ import { ProfileSocials } from './ProfileSocials';
 import { ProfileStats } from './ProfileStats';
 import { ProfileTabs } from './ProfileTabs';
 
-export const ProfileMe = ({ user }: any) => {
+export const ProfileMe = ({ user, fetchMyArts }: any) => {
   const { id, profile, artsCount, friends } = user;
 
   return (
@@ -44,7 +44,7 @@ export const ProfileMe = ({ user }: any) => {
           />
           <ProfileStats nfts={artsCount} following={friends.length} />
         </Container>
-        <ProfileTabs id={id} />
+        <ProfileTabs id={id} fetchMyArts={fetchMyArts} />
       </div>
     </div>
   );
