@@ -20,7 +20,7 @@ export const BuyTokens = ({ warning }: any) => {
     setLoading(true);
     try {
       const amount = new BigNumber(value)
-        .shiftedBy(24)
+        .shiftedBy(22)
         .toFormat()
         .split(',')
         .join('');
