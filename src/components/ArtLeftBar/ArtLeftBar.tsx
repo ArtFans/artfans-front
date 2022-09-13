@@ -12,7 +12,7 @@ export const ArtLeftBar = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  const { setLoggedIn, isLoggedIn } = useContext<any>(UserContext);
+  const { setLoggedIn, isLoggedIn, user } = useContext<any>(UserContext);
 
   const onLogout = () => {
     setLoggedIn(false);
@@ -42,7 +42,7 @@ export const ArtLeftBar = () => {
       </NavLink>
       {isLoggedIn && (
         <>
-          <NavLink to="/profile" className="left-bar__link">
+          <NavLink to={`/profile/${user.id}`} className="left-bar__link">
             <Icon name="user" />
           </NavLink>
           <NavLink to="/settings/profile" className="left-bar__link">
