@@ -10,11 +10,9 @@ import './styles.scss';
 
 export const Profile = () => {
   const { id } = useParams();
-  const { user, fetchMyArts } = useContext<any>(UserContext);
+  const { user } = useContext<any>(UserContext);
 
   const isMe = useMemo(() => !id || id === user.id, [id, user.id]);
 
-  return isMe ?
-    <ProfileMe user={user} fetchMyArts={fetchMyArts} /> :
-    <ProfileThey id={id} />;
+  return isMe ? <ProfileMe user={user} /> : <ProfileThey id={id} />;
 };

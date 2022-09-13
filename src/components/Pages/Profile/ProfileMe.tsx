@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
+
+import ApiService from 'src/services/ApiService';
 
 import ArtButton from 'src/components/ArtButton';
 import Container from 'src/components/Container';
@@ -10,8 +12,19 @@ import { ProfileSocials } from './ProfileSocials';
 import { ProfileStats } from './ProfileStats';
 import { ProfileTabs } from './ProfileTabs';
 
-export const ProfileMe = ({ user, fetchMyArts }: any) => {
-  const { id, profile, artsCount, friends, arts } = user;
+export const ProfileMe = ({ user }: any) => {
+  const { id, profile, artsCount, friends } = user;
+
+  const [arts, setArts] = useState<any>([]);
+
+  const fetchArts = useCallback(async () => {
+    const { data = [] } = await ApiService.getMyArts({
+      friends: [id],
+      skip: arts.length
+    });
+
+    setArts((state: any) => [...state, ...data]);
+  }, [id, arts]);
 
   return (
     <div className="profile-page">
@@ -44,7 +57,7 @@ export const ProfileMe = ({ user, fetchMyArts }: any) => {
           />
           <ProfileStats nfts={artsCount} following={friends.length} />
         </Container>
-        <ProfileTabs id={id} predefinedArts={arts} fetchMyArts={fetchMyArts} />
+        <ProfileTabs arts={arts} fetchArts={fetchArts} />
       </div>
     </div>
   );

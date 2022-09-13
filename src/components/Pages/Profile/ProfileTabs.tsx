@@ -1,7 +1,5 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-
-import ApiService from 'src/services/ApiService';
 
 import ArtCard from 'src/components/ArtCard';
 import ArtTitle from 'src/components/ArtTitle';
@@ -9,28 +7,12 @@ import Container from 'src/components/Container';
 import Grid, { GridCell } from 'src/components/Grid';
 import ArtInfiniteScroll from 'src/components/ArtInfiniteScroll';
 
-export const ProfileTabs = ({ id, predefinedArts, fetchMyArts }: any) => {
+export const ProfileTabs = ({ arts, fetchArts }: any) => {
   const collections = [];
-  const [arts, setArts] = useState<any>(predefinedArts);
-
-  const fetchArts = useCallback(async () => {
-    if (fetchMyArts) {
-      await fetchMyArts();
-    } else {
-      const result = await ApiService.getFriendsArts({
-        friends: [id],
-        skip: arts.length
-      });
-
-      setArts((state: any) => [...state, ...result]);
-    }
-  }, [id, arts, fetchMyArts]);
 
   useEffect(() => {
-    if (!predefinedArts) {
-      fetchArts();
-    }
-  }, [predefinedArts]);
+    fetchArts();
+  }, []);
 
   if (!arts.length && !collections.length) return null;
 
@@ -62,9 +44,7 @@ export const ProfileTabs = ({ id, predefinedArts, fetchMyArts }: any) => {
         )}
         {!!collections.length && (
           <TabPanel>
-            <Container>
-
-            </Container>
+            <Container />
           </TabPanel>
         )}
       </Tabs>

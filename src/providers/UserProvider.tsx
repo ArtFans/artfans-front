@@ -1,4 +1,4 @@
-import React, { createContext, useCallback, useEffect, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 import type { ReactNode } from 'react';
 
 import errorCatch from '../helpers/errorCatch';
@@ -25,15 +25,11 @@ const UserProvider = ({ children }: { children: ReactNode }) => {
   const [currency, setCurrency] = useState(0);
   const [modal, setBuyModal] = useState<any>({ open: false, warning: '' });
 
-  const fetchMyArts = useCallback(async () => {
-    const { data, count } = await ApiService.getMyArts({ skip: user.artsCount });
+  const fetchMyArts = async () => {
+    const { count = 0 } = await ApiService.getMyArts({});
 
-    setUser((state: any) => ({
-      ...state,
-      arts: data || [],
-      artsCount: count || 0,
-    }));
-  }, [user.artsCount]);
+    setUser((state: any) => ({ ...state, artsCount: count }));
+  };
 
   const fetchProfile = async () => {
     try {
@@ -149,8 +145,7 @@ const UserProvider = ({ children }: { children: ReactNode }) => {
         setLoggedIn,
         addFriend,
         updateProfile,
-        setBuyModal,
-        fetchMyArts
+        setBuyModal
       }}
     >
       {children}

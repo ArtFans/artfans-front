@@ -27,6 +27,7 @@ export const ProfileThey = ({ id }: any) => {
   const [isPageLoading, setPageLoading] = useState(true);
   const [isFriendAdding, setFriendAdding] = useState(false);
   const [profile, setProfile] = useState<any>({});
+  const [arts, setArts] = useState<any>([]);
 
   const { setLoginStarted } = useContext<any>(LoginContext);
   const {
@@ -38,6 +39,15 @@ export const ProfileThey = ({ id }: any) => {
   const isFriend = useMemo(() => (
     friends.some((item: any) => item === id)
   ), [id, friends]);
+
+  const fetchArts = useCallback(async () => {
+    const result = await ApiService.getFriendsArts({
+      friends: [id],
+      skip: arts.length
+    });
+
+    setArts((state: any) => [...state, ...result]);
+  }, [id, arts]);
 
   const fetchUser = useCallback(async () => {
     setPageLoading(true);
@@ -80,7 +90,7 @@ export const ProfileThey = ({ id }: any) => {
         addFriend(id);
       }
     } catch (error) {
-      console.log(error)
+      console.log(error);
     } finally {
       setFriendAdding(false);
     }
@@ -133,7 +143,7 @@ export const ProfileThey = ({ id }: any) => {
           />
           <ProfileStats />
         </Container>
-        <ProfileTabs id={id} />
+        <ProfileTabs arts={arts} fetchArts={fetchArts} />
       </div>
     </div>
   );
