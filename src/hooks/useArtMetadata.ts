@@ -14,7 +14,7 @@ const useArtMetadata = (metadata: any) => {
       return metadata.media;
     }
 
-    return `https://paras-cdn.imgix.net/${metadata?.media}`;
+    return `https://ipfs.io/ipfs/${metadata?.media}`;
   }, [metadata?.media]);
 
   const isVideo = useMemo(() => {

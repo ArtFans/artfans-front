@@ -10,7 +10,7 @@ import './styles.scss';
 
 export const ArtCard = (props: any) => {
   const {
-    _id,
+    id,
     owner_id,
     isTiny = false,
     metadata,
@@ -28,7 +28,7 @@ export const ArtCard = (props: any) => {
   return (
     <div className={cardClass}>
       <Link
-        to={`/art/${_id}`}
+        to={`/art/${id}`}
         state={props}
         className="art-card__img"
       >
@@ -51,7 +51,7 @@ export const ArtCard = (props: any) => {
           issuedAt={issuedAt}
           name={name}
         >
-          <UserCardActions artId={_id} isFake={isFake} />
+          <UserCardActions artId={id} isFake={isFake} />
         </UserCard>
       )}
     </div>
