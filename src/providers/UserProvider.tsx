@@ -13,15 +13,15 @@ export const UserContext = createContext({});
 
 const UserProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<any>({
-    id: window.nearAddress,
+    id: window.userAddress?window.userAddress:'tester',
     arts: [],
     profile: JSON.parse(localStorage.getItem('profile') || '{}'),
-    profileFilled: localStorage.getItem('profileFilled') === window.nearAddress,
+    profileFilled: localStorage.getItem('profileFilled') === window.userAddress,
     friends: [],
     artsCount: 0,
     balance: '0'
   });
-  const [isLoggedIn, setLoggedIn] = useState(!!window.nearAddress.length);
+  const [isLoggedIn, setLoggedIn] = useState(window.userAddress&&window.userAddress.length?window.userAddress:null);
   const [currency, setCurrency] = useState(0);
   const [modal, setBuyModal] = useState<any>({ open: false, warning: '' });
 
@@ -34,7 +34,7 @@ const UserProvider = ({ children }: { children: ReactNode }) => {
   const fetchProfile = async () => {
     try {
       const profile = await NearService.contract.get_profile({
-        account_id: window.nearAddress
+        account_id: window.userAddress
       });
 
       if (profile) {
@@ -50,7 +50,7 @@ const UserProvider = ({ children }: { children: ReactNode }) => {
           ...state,
           profile: profileData
         }));
-        setLoggedIn(true);
+        setLoggedIn('true');
         localStorage.setItem('profile', JSON.stringify(profileData));
       }
     } catch (error) {
@@ -68,7 +68,7 @@ const UserProvider = ({ children }: { children: ReactNode }) => {
   const fetchFriends = async () => {
     try {
       const friends = await NearService.contract.get_account_friends({
-        account_id: window.nearAddress,
+        account_id: window.userAddress,
         from_index: '0',
         limit: '1000'
       });
@@ -97,13 +97,13 @@ const UserProvider = ({ children }: { children: ReactNode }) => {
           json_metadata,
           image_url: ipfsHash
         },
-        accountId: window.nearAddress
+        accountId: window.userAddress
       });
 
       setUser((state: any) => ({ ...state, profile }));
       localStorage.setItem('profile', JSON.stringify(profile));
-      localStorage.setItem('profileFilled', window.nearAddress);
-      setLoggedIn(true);
+      localStorage.setItem('profileFilled', window.userAddress);
+      setLoggedIn('true');
     } catch (error) {
       errorCatch(error, setBuyModal({ open: true, warning: 'insufficient funds' }));
     }
@@ -117,7 +117,7 @@ const UserProvider = ({ children }: { children: ReactNode }) => {
   const fetchBalance = async () => {
     try {
       const balance = await NearService.balance.ft_balance_of({
-        account_id: window.nearAddress
+        account_id: window.userAddress
       });
 
       setUser((state: any) => ({ ...state, balance }));
@@ -127,7 +127,7 @@ const UserProvider = ({ children }: { children: ReactNode }) => {
   };
 
   useEffect(() => {
-    if (window.nearAddress) {
+    if (window.userAddress) {
       fetchProfile();
       fetchMyArts();
       fetchFriends();

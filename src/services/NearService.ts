@@ -19,6 +19,7 @@ class NearService {
 
   async init() {
     try {
+      return;
       this.nearConfig = this.getConfig(process.env.NEAR_ENV || window.nearNet);
 
       this.near = await nearAPI.connect({
@@ -36,7 +37,7 @@ class NearService {
   }
 
   async getCurrentUser() {
-    try {
+    try {return;
       if (this.walletConnection.getAccountId()) {
         const { amount: balance } = await this.walletConnection.account().state();
 
@@ -51,7 +52,7 @@ class NearService {
   }
 
   async initContract() {
-    try {
+    try {return;
       this.contract = await new nearAPI.Contract(
         this.walletConnection.account(),
         this.nearConfig.contractName,
@@ -101,63 +102,17 @@ class NearService {
   }
 
   getConfig(env: string) {
-    switch(env) {
-      case 'mainnet':
-        return {
-          networkId: 'mainnet',
-          nodeUrl: 'https://rpc.mainnet.near.org',
-          contractName: CONTRACT_NAME,
-          walletUrl: 'https://wallet.near.org',
-          helperUrl: 'https://helper.mainnet.near.org'
-        };
-      case 'production':
-      case 'development':
-      case 'testnet':
-        return {
-          networkId: 'testnet',
-          nodeUrl: 'https://rpc.testnet.near.org',
-          contractName: CONTRACT_NAME,
-          walletUrl: 'https://wallet.testnet.near.org',
-          helperUrl: 'https://helper.testnet.near.org'
-        };
-      case 'betanet':
-        return {
-          networkId: 'betanet',
-          nodeUrl: 'https://rpc.betanet.near.org',
-          contractName: CONTRACT_NAME,
-          walletUrl: 'https://wallet.betanet.near.org',
-          helperUrl: 'https://helper.betanet.near.org'
-        };
-      case 'local':
-        return {
-          networkId: 'local',
-          nodeUrl: 'http://localhost:3030',
-          keyPath: `${process.env.HOME}/.near/validator_key.json`,
-          walletUrl: 'http://localhost:4000/wallet',
-          contractName: CONTRACT_NAME
-        };
-      case 'test':
-      case 'ci':
-        return {
-          networkId: 'shared-test',
-          nodeUrl: 'https://rpc.ci-testnet.near.org',
-          contractName: CONTRACT_NAME,
-          masterAccount: 'test.near'
-        };
-      case 'ci-betanet':
-        return {
-          networkId: 'shared-test-staging',
-          nodeUrl: 'https://rpc.ci-betanet.near.org',
-          contractName: CONTRACT_NAME,
-          masterAccount: 'test.near'
-        };
-      default:
-        throw Error(`Unconfigured environment '${env}'. Can be configured in src/config.js.`);
-    }
+    return {
+      networkId: 'mainnet',
+      nodeUrl: 'https://rpc.mainnet.near.org',
+      contractName: CONTRACT_NAME,
+      walletUrl: 'https://wallet.near.org',
+      helperUrl: 'https://helper.mainnet.near.org'
+    };
   }
 
   async buyArtTokes(amount: string) {
-    try {
+    try {return;
       const res = await this.walletConnection.account().signAndSendTransaction({
         receiverId: 'market_artfans.near',
         actions: [
@@ -165,7 +120,7 @@ class NearService {
             'buy_activity_ft',
             Buffer.from(JSON.stringify({
               token_series_id: '1',
-              receiver_id: window.nearAddress
+              receiver_id: window.userAddress
             })),
             '30000000000000', // 30 TGas
             amount // 0.1 NEAR

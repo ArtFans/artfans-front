@@ -48,6 +48,18 @@ class ApiService {
       console.log(error);
     }
   }
+  async login(address: string, signature: string) {
+    try {
+      const { data } = await this.request({
+        url: '/user/login',
+        data: { address: address, signature: signature }
+      });
+
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   async getFromIpfs(hash: string) {
     try {

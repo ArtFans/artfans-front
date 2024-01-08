@@ -43,7 +43,7 @@ export const Header = () => {
       >
         <Login
           initialStep={searchParams.get('login') ? 2 : 1}
-          onLogin={() => setLoggedIn(true)}
+          onLogin={() => setLoggedIn('true')}
           onClose={() => setLoginStarted(false)}
         />
       </ArtModal>

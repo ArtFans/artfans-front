@@ -3,7 +3,7 @@ export {}
 declare global {
   interface Window {
     nearNet: string;
-    nearAddress: string;
+    userAddress: string;
     nearInitPromise: any;
   }
 }

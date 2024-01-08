@@ -15,7 +15,7 @@ export const ArtLeftBar = () => {
   const { setLoggedIn, isLoggedIn, user } = useContext<any>(UserContext);
 
   const onLogout = () => {
-    setLoggedIn(false);
+    setLoggedIn(null);
     localStorage.removeItem('profile');
     window.open('/near/exit', '_self');
   };
